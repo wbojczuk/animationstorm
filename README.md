@@ -9,7 +9,7 @@ data-placeholder="true/false" (Determines whether of not to display placeholder,
 
 data-delay="1000" (Time in MS to delay animation start)
 
-data-idle="1000" (Time in MS to idle placeholder before it disappears)
+data-idle="1000" (Time in MS to idle placeholder after animation before it disappears)
 
 Onload Simple Write Animation Example:
 
