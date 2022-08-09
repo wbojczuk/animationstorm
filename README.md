@@ -11,6 +11,10 @@ data-delay="1000" (Time in MS to delay animation start)
 
 data-idle="1000" (Time in MS to idle placeholder after animation before it disappears)
 
+data-color="hex/rgb(a)/name" (Color of the placeholder)
+
+data-width="2px" (Width of the placeholder. Default value is 2px)
+
 Onload Simple Write Animation Example:
 
     <div class="as-write-load" data-delay="1000">
