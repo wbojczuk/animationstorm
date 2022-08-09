@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Animation Storm</title>
+    <link rel="stylesheet" href="animationstorm.css">
+    <script src="animationstorm.js" defer></script>
+    <style>
+        *{
+    margin:0;
+    padding:0;
+}
+
+.center{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+body{
+    background-color: #200224;
+}
+
+.site-title{
+    color: #C70039;
+    font-family: monospace;
+    transform: translateX(30vw);
+    margin-top: 50px;
+    font-size: 5vw;
+    font-weight: 800;
+}
+
+.site-description {
+    display: inline-block;
+    color: #900C3F;
+    font-family: monospace;
+    transform: translateX(40vw);
+    margin-top: 30px;
+    font-size: 2vw;
+    font-weight: 800;
+}
+    </style>
+</head>
+<body>
+    
+    <span style=" display:inline-block;" data-delay="500" data-width="4px" class="site-title as-write" data-color="#C70039">Animation Storm</span><br>
+    
+    <span class="site-description as-mulwrite" data-color="#900C3F" data-delay="3000">
+        <span class="as-mulwrite-text">Not One Dependency</span>
+        <span class="as-mulwrite-text">Very Easy To Use</span>
+        <span class="as-mulwrite-text">Extremely Lightweight</span>
+        <span class="as-mulwrite-text">Ready to Plug and Play</span>
+    </span>
+
+
+</body>
+</html>
