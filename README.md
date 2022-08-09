@@ -1,5 +1,5 @@
 # animationstorm
-DEMO- http://https://wbojczuk.github.io/animationstorm/
+DEMO- https://wbojczuk.github.io/animationstorm/
 
 <h2>SIMPLE WRITE ANIMATION</h2>
 
