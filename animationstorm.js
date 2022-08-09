@@ -84,7 +84,7 @@ const animationStorm = {
         placeholderSpan.setAttribute("class", "as-write-placeholder");
         spanInner.setAttribute("class", "as-write-inner");
         let tempText = currentElem.textContent;
-        currentElem.innerHTML = "&nbsp;";
+        currentElem.innerHTML = "&#8203";
 
         currentElem.append(spanInner.cloneNode(false))
         const currentElemInner = currentElem.querySelector(".as-write-inner");
@@ -159,7 +159,7 @@ const animationStorm = {
         let currentCount = 0;
         let currentText = textArray[currentCount].textContent;
         let tempText = currentText;
-        currentElem.innerHTML = "&nbsp;";
+        currentElem.innerHTML = "&#8203";
 
         
         
