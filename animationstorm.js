@@ -27,9 +27,22 @@ const animationStorm = {
             }
         } 
         // END ON LOAD WRITE
-        setTimeout(()=>{
-            animationStorm.simpleWrite(document.getElementById("yessir"))
-        },1000)
+
+        // On Hover
+
+        if(document.querySelectorAll(".as-write-hover")){
+            const writeElems = document.querySelectorAll(".as-write-hover");
+            const writeElemsLength = writeElems.length;
+
+            for(let i=0; i<writeElemsLength; i++){
+                const currentElem = writeElems[i];
+                currentElem.addEventListener("mouseover", animationStorm.simpleWriteHandler);
+                
+            }
+        } 
+
+        // END On Hover
+
 
     },
 
@@ -77,7 +90,6 @@ const animationStorm = {
 
         let textCount = 0;
         setTimeout(writeLoadLoop, currentDelay);
-        
             function writeLoadLoop(){
                 let currentText = textSpan.cloneNode("false");
                 currentText.textContent = tempText.charAt(textCount);
@@ -95,6 +107,17 @@ const animationStorm = {
                 }
             }
     },
+
+
+
+
+    // EVENT HANDLERS
+    simpleWriteHandler: (evt)=>{
+        evt.target.removeEventListener("mouseover", animationStorm.simpleWriteHandler);
+        animationStorm.simpleWrite(evt.target);
+    },
+
+    
 };
 
 animationStorm.setup();
