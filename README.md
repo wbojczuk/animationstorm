@@ -21,7 +21,7 @@ Onload Simple Write Animation Example:
     
 OnHover Simple Write Animation Example:
 
-    <div class="as-write-hover" data-delay="1000">
+    <div class="as-write-hover" data-idle="2000">
 
         Text here
 
