@@ -53,8 +53,28 @@ const animationStorm = {
 
         placeholderSpan.setAttribute("class", "as-write-placeholder");
         spanInner.setAttribute("class", "as-write-inner");
+        let tempText = currentElem.textContent;
+        currentElem.innerHTML = "&nbsp;";
 
+        currentElem.append(spanInner.cloneNode(false))
+        const currentElemInner = currentElem.querySelector(".as-write-inner");
+        const currentElemText = currentElemInner.querySelector(".as-write-text");
+        currentElemInner.append(placeholderSpan.cloneNode(false));
+        const currentPlaceholder = currentElemInner.querySelector(".as-write-placeholder");
         // SETTINGS
+        let speedSettings = animationStorm.simpleWriteSpeed;
+        if(currentElem.hasAttribute("data-speed")){
+            speedSettings = currentElem.dataset.speed;
+        }
+
+        if(currentElem.hasAttribute("data-color")){
+            currentPlaceholder.style.backgroundColor = currentElem.dataset.color;
+        }
+
+        if(currentElem.hasAttribute("data-width")){
+            currentPlaceholder.style.width = currentElem.dataset.width;
+        }
+
         let placeholderSettings = animationStorm.simpleWritePlaceholder;
         if(currentElem.hasAttribute("data-placeholder")){
             placeholderSettings = currentElem.dataset.placeholder;
@@ -68,14 +88,7 @@ const animationStorm = {
         if(currentElem.hasAttribute("data-idle")){
             currentIdle = currentElem.dataset.idle;
         }
-        let tempText = currentElem.textContent;
-        currentElem.innerHTML = "&nbsp;";
-
-        currentElem.append(spanInner.cloneNode(false))
-        const currentElemInner = currentElem.querySelector(".as-write-inner");
-        const currentElemText = currentElemInner.querySelector(".as-write-text");
-        currentElemInner.append(placeholderSpan.cloneNode(false));
-        const currentPlaceholder = currentElemInner.querySelector(".as-write-placeholder");
+        
 
         if(placeholderSettings === false || placeholderSettings == "false"){currentPlaceholder.style.display = "none";}
 
@@ -97,7 +110,7 @@ const animationStorm = {
                 
                 textCount++;
                 if(textCount<tempText.length){
-                    setTimeout(writeLoadLoop, Math.random() * (animationStorm.simpleWriteSpeed - animationStorm.simpleWriteSpeed - 10) + animationStorm.simpleWriteSpeed - 10);
+                    setTimeout(writeLoadLoop, Math.random() * (speedSettings - (speedSettings - 10)) + (speedSettings - 10));
                 } else {
                     if(animationStorm.simpleWriteIdle){
                         setTimeout(()=>{
