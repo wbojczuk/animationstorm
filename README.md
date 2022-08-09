@@ -12,7 +12,7 @@ data-color="hex/rgb(a)/name" (Color of the placeholder)<br>
 data-width="2px" (Width of the placeholder. Default value is 2px)<br>
 <br>
 **TRIGGERS**<br>
-OnLoad- use class as-write-load.<br>
+OnLoad- default trigger, use the class as-write.<br>
 OnHover- use class as-write-hover.<br>
 CUSTOM- animationStorm.simpleWrite(element);<br>
 
