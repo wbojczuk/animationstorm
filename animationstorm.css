@@ -23,17 +23,17 @@
     width: 3px;
     border: 0px solid transparent;
     border-radius: 20px;
-    animation: write_placeholder_fade 1s infinite;
+    animation: fade_in_out 1s infinite;
 }
 
 .as-text-fade-in {
-    animation: write_fade_in 0.1s forwards;
+    animation: fade_in 0.1s forwards;
 }
 .as-text-fade-out {
-    animation: write_fade_out 0.1s forwards;
+    animation: fade_out 0.1s forwards;
 }
 
-@keyframes write_placeholder_fade {
+@keyframes fade_in_out {
     0%{
         opacity: 0;
     }
@@ -45,7 +45,7 @@
         }
 }
 
-@keyframes write_fade_in {
+@keyframes fade_in {
     0%{
         opacity: 0;
     }
@@ -54,7 +54,7 @@
     }
 }
 
-@keyframes write_fade_out {
+@keyframes fade_out {
     0%{
         opacity: 100;
     }
