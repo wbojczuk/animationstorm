@@ -19,7 +19,7 @@ CUSTOM- animationStorm.simpleWrite(element);<br>
 <br>
 Simple Write Animation Useage Example:<br>
 
-    <div class="as-write-load" data-delay="1000">Text here</div><br>
+    <div class="as-write" data-delay="1000">Text here</div><br>
     
     
 <h2>MULTI WRITE ANIMATION</h2><br>
@@ -55,7 +55,7 @@ Multi Write Animation Useage Example:<br>
 
 **BEFORE**<br>
 
-    <div class="as-write-load" data-delay="1000">
+    <div class="as-write" data-delay="1000">
 
         Text
 
@@ -63,7 +63,7 @@ Multi Write Animation Useage Example:<br>
 
 **AFTER**<br>
 
-    <div class="as-write-load" data-delay="1000">
+    <div class="as-write" data-delay="1000">
 
     <span class="as-write-inner">
 
