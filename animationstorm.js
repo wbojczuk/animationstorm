@@ -19,7 +19,7 @@ const animationStorm = {
     //  DEFAULT TIME TO IDLE PLACEHOLDER AFTER ANIMATION. Leave null for infinite idling;
      mulWriteIdle: 1000,
 
-     mulAfterIdle: 2000,
+     mulAfterIdle: null,
 
      mulWritePlaceholder: true,
 
@@ -209,10 +209,12 @@ const animationStorm = {
         }
 
         
-        let currentIdle = animationStorm.simpleWriteIdle;
+        let currentIdle = animationStorm.mulWriteIdle;
         if(currentElem.hasAttribute("data-idle")){
-            currentIdle = currentElem.dataset.idle;
+            currentIdle = currentElem.dataset.writeidle;
         }
+
+        
 
         let currentAfterIdle = animationStorm.mulAfterIdle;
         if(currentElem.hasAttribute("data-afteridle")){
@@ -236,6 +238,7 @@ const animationStorm = {
                 setTimeout(writeLoadLoop, Math.random() * (speedSettings - (speedSettings - 10)) + (speedSettings - 10));
             } else { 
                 if(currentCount+1<textArray.length||(loopSettings!==false&&loopSettings!=="false")){
+                   
                     setTimeout(delLoadLoop, currentIdle);
             } else if(currentAfterIdle){
                 setTimeout(()=>{
@@ -248,7 +251,7 @@ const animationStorm = {
             const currentElemTarget = currentElemInner.lastChild.previousSibling;
             const currentInterval =  Math.random() * (delSpeedSettings - (delSpeedSettings - 10)) + (delSpeedSettings - 10);
             currentElemTarget.style.animation = "none";
-            currentElemTarget.style.animation = `write_fade_out ${currentInterval}ms forwards`;
+            currentElemTarget.style.animation = `fade_out ${currentInterval}ms forwards`;
             currentElemTarget.onanimationend = (evt)=>{
                 evt.target.remove();
                 if(currentElemInner.lastChild.previousSibling){
