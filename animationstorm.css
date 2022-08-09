@@ -2,6 +2,10 @@
     opacity: 0;
 }
 
+.as-write-hover {
+    opacity: 0;
+}
+
 .as-write-inner {
     position: relative;
     height: 100%;
