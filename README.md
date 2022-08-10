@@ -19,7 +19,8 @@ data-idle="1000" (Time in MS to idle placeholder after animation before it disap
 data-color="hex/rgb(a)/name" (Color of the placeholder)<br>
 data-width="2px" (Width of the placeholder. Default value is 2px)<br>
 data-height="100%" (Height of the placeholder. Default value is 100%)<br>
-data-offset="-5px" (Offset of the placeholder relative to the text. Default value is -5px)<br>
+data-offsetv="-5px" (Vertical offset of the placeholder relative to the text.)<br>
+data-offseth="-5px" (Horizontal offset of the placeholder relative to the text. Default value is -5px)<br>
 <br>
 **TRIGGERS**<br>
 OnLoad- default trigger, use the class as-write.<br>
@@ -49,7 +50,8 @@ data-placeholder="true/false" (Whether or not to display placeholder)<br>
 data-color="hex/rgb(a)/name" (Color of the placeholder)<br>
 data-width="2px" (Width of the placeholder. Default value is 2px)<br>
 data-height="100%" (Height of the placeholder. Default value is 100%)<br>
-data-offset="-5px" (Offset of the placeholder relative to the text. Default value is -5px)<br>
+data-offsetv="-5px" (Vertical offset of the placeholder relative to the text.)<br>
+data-offseth="-5px" (Horizontal offset of the placeholder relative to the text. Default value is -5px)<br>
 <br>
 
 **TRIGGERS**
