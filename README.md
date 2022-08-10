@@ -13,6 +13,8 @@ data-wait="1000" (Time in MS to wait before starting any animation)<br>
 data-idle="1000" (Time in MS to idle placeholder after animation before it disappears)<br>
 data-color="hex/rgb(a)/name" (Color of the placeholder)<br>
 data-width="2px" (Width of the placeholder. Default value is 2px)<br>
+data-height="100%" (Height of the placeholder. Default value is 100%)<br>
+data-offset="-5px" (Offset of the placeholder relative to the text. Default value is -5px)<br>
 <br>
 **TRIGGERS**<br>
 OnLoad- default trigger, use the class as-write.<br>
@@ -41,6 +43,8 @@ data-wait="1000" (Time in MS to wait before starting any animation)<br>
 data-placeholder="true/false" (Whether or not to display placeholder)<br>
 data-color="hex/rgb(a)/name" (Color of the placeholder)<br>
 data-width="2px" (Width of the placeholder. Default value is 2px)<br>
+data-height="100%" (Height of the placeholder. Default value is 100%)<br>
+data-offset="-5px" (Offset of the placeholder relative to the text. Default value is -5px)<br>
 <br>
 
 **TRIGGERS**
