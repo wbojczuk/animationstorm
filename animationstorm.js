@@ -37,7 +37,12 @@ const animationStorm = {
 
             for(let i=0; i<writeElemsLength; i++){
                 const currentElem = writeElems[i];
-                animationStorm.simpleWrite(currentElem)
+                
+                if(currentElem.hasAttribute("data-wait")){
+                    setTimeout(()=>{animationStorm.simpleWriteStart(currentElem);}, currentElem.dataset.wait);
+                }else{
+                    animationStorm.simpleWriteStart(currentElem);
+                }
                 
             }
         } 
@@ -58,7 +63,7 @@ const animationStorm = {
 
         // END On Hover
 
-        // MULTIPLE TEXT WRITE
+        // MULTIPLE TEXT WRITE ONLOAD
         if(document.querySelectorAll(".as-mulwrite")){
             const writeElems = document.querySelectorAll(".as-mulwrite");
             const writeElemsLength = writeElems.length;
@@ -68,7 +73,11 @@ const animationStorm = {
 
                 const currentElemText = currentElem.querySelectorAll(".as-mulwrite-text");
 
-                animationStorm.mulWriteIn(currentElem, currentElemText);
+                if(currentElem.hasAttribute("data-wait")){
+                    setTimeout(()=>{animationStorm.mulWriteIn(currentElem, currentElemText);}, currentElem.dataset.wait);
+                }else{
+                    animationStorm.mulWriteIn(currentElem, currentElemText);
+                }
     
                 
             }
@@ -77,7 +86,25 @@ const animationStorm = {
 
     },
 
-    simpleWrite: (currentElem)=>{
+    mulWrite: (elem)=>{
+        const currentElemText = elem.querySelectorAll(".as-mulwrite-text");
+        if(elem.hasAttribute("data-wait")){
+            setTimeout(()=>{animationStorm.mulWriteIn(elem, currentElemText);}, elem.dataset.wait);
+        }else{
+            animationStorm.mulWriteIn(elem, currentElemText);
+        }
+        
+    },
+
+    simpleWrite:(elem)=>{
+        if(elem.hasAttribute("data-wait")){
+            setTimeout(()=>{animationStorm.simpleWriteStart(elem);}, elem.dataset.wait);
+        }else{
+            animationStorm.simpleWriteStart(elem);
+        }
+    },
+
+    simpleWriteStart: (currentElem)=>{
         const spanInner = document.createElement("span");
         const placeholderSpan = document.createElement("span");
 
@@ -281,7 +308,13 @@ const animationStorm = {
     // EVENT HANDLERS
     simpleWriteHandler: (evt)=>{
         evt.target.removeEventListener("mouseover", animationStorm.simpleWriteHandler);
-        animationStorm.simpleWrite(evt.target);
+
+        if(evt.target.hasAttribute("data-wait")){
+            setTimeout(()=>{animationStorm.simpleWriteStart(evt.target);}, evt.target.dataset.wait);
+        }else{
+            animationStorm.simpleWriteStart(evt.target);
+        }
+        
     },
 
     
