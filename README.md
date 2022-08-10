@@ -50,7 +50,7 @@ data-offset="-5px" (Offset of the placeholder relative to the text. Default valu
 **TRIGGERS**
 
 OnLoad- default trigger, use the class as-mulwrite<br>
-CUSTOM- animationStorm.mulWrite(element);<br>
+CUSTOM- animationStorm.mulWrite(element);<br><br>
 Multi Write Animation Useage Example:<br>
 
         <div class="as-mulwrite" >
