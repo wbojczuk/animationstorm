@@ -28,9 +28,10 @@ const animationStorm = {
 
 
     setup: ()=>{
-        // SIMPLE Write Text
+        // ONLOAD TRIGGERS
 
-        // On Load
+        // SIMPLE WRITE
+
         if(document.querySelectorAll(".as-write")){
             const writeElems = document.querySelectorAll(".as-write");
             const writeElemsLength = writeElems.length;
@@ -46,24 +47,8 @@ const animationStorm = {
                 
             }
         } 
-        // END ON LOAD WRITE
 
-        // On Hover
-
-        if(document.querySelectorAll(".as-write-hover")){
-            const writeElems = document.querySelectorAll(".as-write-hover");
-            const writeElemsLength = writeElems.length;
-
-            for(let i=0; i<writeElemsLength; i++){
-                const currentElem = writeElems[i];
-                currentElem.addEventListener("mouseover", animationStorm.simpleWriteHandler);
-                
-            }
-        } 
-
-        // END On Hover
-
-        // MULTIPLE TEXT WRITE ONLOAD
+        // MULWRITE 
         if(document.querySelectorAll(".as-mulwrite")){
             const writeElems = document.querySelectorAll(".as-mulwrite");
             const writeElemsLength = writeElems.length;
@@ -84,26 +69,28 @@ const animationStorm = {
         }
 
 
-    },
+        // ON HOVER LISTENERS
 
-    mulWrite: (elem)=>{
-        const currentElemText = elem.querySelectorAll(".as-mulwrite-text");
-        if(elem.hasAttribute("data-wait")){
-            setTimeout(()=>{animationStorm.mulWriteIn(elem, currentElemText);}, elem.dataset.wait);
-        }else{
-            animationStorm.mulWriteIn(elem, currentElemText);
-        }
+        // SIMPLE WRITE
+
+        if(document.querySelectorAll(".as-write-hover")){
+            const writeElems = document.querySelectorAll(".as-write-hover");
+            const writeElemsLength = writeElems.length;
+
+            for(let i=0; i<writeElemsLength; i++){
+                const currentElem = writeElems[i];
+                currentElem.addEventListener("mouseover", animationStorm.simpleWriteHandler);
+                
+            }
+        } 
+
+        // END On Hover
+
         
-    },
 
-    simpleWrite:(elem)=>{
-        if(elem.hasAttribute("data-wait")){
-            setTimeout(()=>{animationStorm.simpleWriteStart(elem);}, elem.dataset.wait);
-        }else{
-            animationStorm.simpleWriteStart(elem);
-        }
-    },
 
+    },
+    // simpleWrite Write Function
     simpleWriteStart: (currentElem)=>{
         const spanInner = document.createElement("span");
         const placeholderSpan = document.createElement("span");
@@ -178,6 +165,7 @@ const animationStorm = {
             }
     },
 
+    // mulWrite Write Function
     mulWriteIn: (currentElem, textArray)=>{
         const spanInner = document.createElement("span");
         const placeholderSpan = document.createElement("span");
@@ -274,6 +262,7 @@ const animationStorm = {
             }
         }
         }
+        // MulWrite Delete Function
         function delLoadLoop(){
             const currentElemTarget = currentElemInner.lastChild.previousSibling;
             const currentInterval =  Math.random() * (delSpeedSettings - (delSpeedSettings - 10)) + (delSpeedSettings - 10);
@@ -302,10 +291,30 @@ const animationStorm = {
         }
     },
 
+    // CUSTOM TRIGGERS 
 
+    mulWrite: (elem)=>{
+        const currentElemText = elem.querySelectorAll(".as-mulwrite-text");
+        if(elem.hasAttribute("data-wait")){
+            setTimeout(()=>{animationStorm.mulWriteIn(elem, currentElemText);}, elem.dataset.wait);
+        }else{
+            animationStorm.mulWriteIn(elem, currentElemText);
+        }
+        
+    },
+
+    simpleWrite:(elem)=>{
+        if(elem.hasAttribute("data-wait")){
+            setTimeout(()=>{animationStorm.simpleWriteStart(elem);}, elem.dataset.wait);
+        }else{
+            animationStorm.simpleWriteStart(elem);
+        }
+    },
 
 
     // EVENT HANDLERS
+
+    // simpleWrite ON HOVER
     simpleWriteHandler: (evt)=>{
         evt.target.removeEventListener("mouseover", animationStorm.simpleWriteHandler);
 
