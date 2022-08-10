@@ -119,6 +119,14 @@ const animationStorm = {
             currentPlaceholder.style.width = currentElem.dataset.width;
         }
 
+        if(currentElem.hasAttribute("data-offset")){
+            currentPlaceholder.style.right = currentElem.dataset.offset;
+        }
+
+        if(currentElem.hasAttribute("data-height")){
+            currentPlaceholder.style.height = currentElem.dataset.height;
+        }
+
         let placeholderSettings = animationStorm.simpleWritePlaceholder;
         if(currentElem.hasAttribute("data-placeholder")){
             placeholderSettings = currentElem.dataset.placeholder;
@@ -210,6 +218,14 @@ const animationStorm = {
 
         if(currentElem.hasAttribute("data-width")){
             currentPlaceholder.style.width = currentElem.dataset.width;
+        }
+
+        if(currentElem.hasAttribute("data-offset")){
+            currentPlaceholder.style.right = currentElem.dataset.offset;
+        }
+
+        if(currentElem.hasAttribute("data-height")){
+            currentPlaceholder.style.height = currentElem.dataset.height;
         }
 
         let placeholderSettings = animationStorm.mulWritePlaceholder;
