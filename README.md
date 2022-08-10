@@ -8,7 +8,8 @@ Most animations be triggered using either built-in triggers Onload or Onhover, o
 **OPTIONS**
 
 data-placeholder="true/false" (Determines whether of not to display placeholder, default value is true)<br>
-data-delay="1000" (Time in MS to delay animation start)<br>
+data-delay="1000" (Time in MS to idle placeholder before animation start)<br>
+data-wait="1000" (Time in MS to wait before starting any animation)<br>
 data-idle="1000" (Time in MS to idle placeholder after animation before it disappears)<br>
 data-color="hex/rgb(a)/name" (Color of the placeholder)<br>
 data-width="2px" (Width of the placeholder. Default value is 2px)<br>
@@ -35,7 +36,8 @@ data-afteridle="null/ms" (How long to idle after animation finishes if looping i
 data-idle="ms" (How long to idle in between writing/deleting text)<br>
 data-writespeed="ms" (How fast to write text in ms)<br>
 data-delspeed="ms" (How fast to delete text in ms)<br>
-data-delay="ms" (How long to wait before typing on first text)<br>
+data-delay="ms" (How long to wait to idle placeholder before typing on first text)<br>
+data-wait="1000" (Time in MS to wait before starting any animation)<br>
 data-placeholder="true/false" (Whether or not to display placeholder)<br>
 data-color="hex/rgb(a)/name" (Color of the placeholder)<br>
 data-width="2px" (Width of the placeholder. Default value is 2px)<br>
@@ -43,8 +45,8 @@ data-width="2px" (Width of the placeholder. Default value is 2px)<br>
 
 **TRIGGERS**
 
-OnLoad- default trigger, use the class as-mulwrite
-<br>
+OnLoad- default trigger, use the class as-mulwrite<br>
+CUSTOM- animationStorm.mulWrite(element);<br>
 Multi Write Animation Useage Example:<br>
 
         <div class="as-mulwrite" >
