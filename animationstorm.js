@@ -119,8 +119,12 @@ const animationStorm = {
             currentPlaceholder.style.width = currentElem.dataset.width;
         }
 
-        if(currentElem.hasAttribute("data-offset")){
-            currentPlaceholder.style.right = currentElem.dataset.offset;
+        if(currentElem.hasAttribute("data-offseth")){
+            currentPlaceholder.style.right = currentElem.dataset.offseth;
+        }
+
+        if(currentElem.hasAttribute("data-offsetv")){
+            currentPlaceholder.style.top = currentElem.dataset.offsetv;
         }
 
         if(currentElem.hasAttribute("data-height")){
@@ -220,8 +224,12 @@ const animationStorm = {
             currentPlaceholder.style.width = currentElem.dataset.width;
         }
 
-        if(currentElem.hasAttribute("data-offset")){
-            currentPlaceholder.style.right = currentElem.dataset.offset;
+        if(currentElem.hasAttribute("data-offseth")){
+            currentPlaceholder.style.right = currentElem.dataset.offseth;
+        }
+
+        if(currentElem.hasAttribute("data-offsetv")){
+            currentPlaceholder.style.top = currentElem.dataset.offsetv;
         }
 
         if(currentElem.hasAttribute("data-height")){
