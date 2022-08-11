@@ -86,6 +86,10 @@ OnLoad- default trigger, use the class as-mulwrite<br>
 
 <h2>HOW IT WORKS</h2><br>
 
+Falling Write Animation Useage Example:<br>
+
+    <div class="as-fallwrite" data-delay="1000">Falling Text</div><br>
+
 **BEFORE**<br>
 
     <div class="as-write" data-delay="1000">
