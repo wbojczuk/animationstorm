@@ -68,3 +68,21 @@
 .as-mulwrite-text{
     display: none;
 }
+
+
+.as-fallwrite{
+    opacity:0;
+}
+
+.as-fallwrite-span{
+    display: inline-block;
+}
+
+@keyframes falling_text_opacity {
+    0%{opacity: 0;}
+    100%{opacity: 100; transform: translateY(0);}  
+}
+
+@keyframes falling_text {
+    100%{transform: translateY(0);}  
+}
