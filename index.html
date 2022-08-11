@@ -30,6 +30,7 @@ body{
     margin-top: 50px;
     font-size: 5vw;
     font-weight: 800;
+    
 }
 
 .site-description {
@@ -37,22 +38,34 @@ body{
     color: #900C3F;
     font-family: monospace;
     transform: translateX(40vw);
-    margin-top: 30px;
+    margin-top: 50px;
     font-size: 2vw;
+    font-weight: 800;
+}
+.falling-text {
+    display: inline-block;
+    color: #900C3F;
+    font-family: monospace;
+    transform: translateX(28vw);
+    margin-top: 100px;
+    font-size: 4vw;
     font-weight: 800;
 }
     </style>
 </head>
 <body>
     
-    <span style=" display:inline-block;" data-wait="1000" data-offseth="-10px" data-height="90%" data-delay="1000" data-width="5px" class="site-title as-write" data-color="#C70039">Animation Storm</span><br>
+    <span style="display:inline-block;" data-wait="500" data-delay="500" data-offset="-10px" data-height="90%" data-width="5px" class="site-title as-write" data-color="#C70039">Animation Storm</span><br>
     
-    <span class="site-description as-mulwrite" data-color="#900C3F" data-wait="3000" data-delay="2000">
+    <span class="site-description as-mulwrite" data-color="#900C3F" data-delay="1000" data-wait="3000">
         <span class="as-mulwrite-text">Not One Dependency</span>
         <span class="as-mulwrite-text">Very Easy To Use</span>
         <span class="as-mulwrite-text">Extremely Lightweight</span>
         <span class="as-mulwrite-text">Ready to Plug and Play</span>
-    </span>
+        <span class="as-mulwrite-text">Highly Customizable</span>
+    </span><br>
+
+    <span data-wait="5000" class="as-fallwrite falling-text">There is Falling Text</span>
 
 
 </body>
