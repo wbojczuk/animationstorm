@@ -66,6 +66,24 @@ Multi Write Animation Useage Example:
         </div>
         
 <br>
+
+<h2>FALLING WRITE ANIMATION</h2><br>
+Writes text by dropping it from the sky :O.<br>
+<br>
+
+**OPTIONS**
+
+data-writespeed="ms" (How fast to write text in ms)<br>
+data-wait="1000" (Time in MS to wait before starting any animation)<br>
+data-opacity="true/false" (Whether or not to fade falling text in during animation)<br>
+data-fallspeed="40" (How fast Text falls in ms)<br>
+data-writestart="-15vh" (Where to drop text from)
+<br>
+
+**TRIGGERS**
+
+OnLoad- default trigger, use the class as-mulwrite<br>
+
 <h2>HOW IT WORKS</h2><br>
 
 **BEFORE**<br>
