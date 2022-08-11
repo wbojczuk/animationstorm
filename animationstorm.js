@@ -25,6 +25,11 @@ const animationStorm = {
 
      mulWriteLoop: true,
 
+    //  FALLING WRITE SETTINGS
+    fallWriteSpeed: 40,
+    fallWriteFallSpeed: 800,
+    fallWriteStart: "-15vh",
+    fallWriteOpacity: true,
 
 
     setup: ()=>{
@@ -57,7 +62,7 @@ const animationStorm = {
                 const currentElem = writeElems[i];
 
                 const currentElemText = currentElem.querySelectorAll(".as-mulwrite-text");
-
+                currentElem.innerHTML = "&#8203";
                 if(currentElem.hasAttribute("data-wait")){
                     setTimeout(()=>{animationStorm.mulWriteIn(currentElem, currentElemText);}, currentElem.dataset.wait);
                 }else{
@@ -67,6 +72,24 @@ const animationStorm = {
                 
             }
         }
+
+        // FALL WRITE
+
+        if(document.querySelector(".as-fallwrite")){
+            const writeElems = document.querySelectorAll(".as-fallwrite");
+            const writeElemsLength = writeElems.length;
+            for(let i = 0; i<writeElemsLength; i++){
+                const currentElem = writeElems[i];
+
+                if(currentElem.hasAttribute("data-wait")){
+                    setTimeout(()=>{animationStorm.fallWriteIn(currentElem);}, currentElem.dataset.wait);
+                }else{
+                    animationStorm.fallWriteIn(currentElem);
+                }
+            }
+        }
+
+
 
 
         // ON HOVER LISTENERS
@@ -119,12 +142,8 @@ const animationStorm = {
             currentPlaceholder.style.width = currentElem.dataset.width;
         }
 
-        if(currentElem.hasAttribute("data-offseth")){
-            currentPlaceholder.style.right = currentElem.dataset.offseth;
-        }
-
-        if(currentElem.hasAttribute("data-offsetv")){
-            currentPlaceholder.style.top = currentElem.dataset.offsetv;
+        if(currentElem.hasAttribute("data-offset")){
+            currentPlaceholder.style.right = currentElem.dataset.offset;
         }
 
         if(currentElem.hasAttribute("data-height")){
@@ -224,12 +243,8 @@ const animationStorm = {
             currentPlaceholder.style.width = currentElem.dataset.width;
         }
 
-        if(currentElem.hasAttribute("data-offseth")){
-            currentPlaceholder.style.right = currentElem.dataset.offseth;
-        }
-
-        if(currentElem.hasAttribute("data-offsetv")){
-            currentPlaceholder.style.top = currentElem.dataset.offsetv;
+        if(currentElem.hasAttribute("data-offset")){
+            currentPlaceholder.style.right = currentElem.dataset.offset;
         }
 
         if(currentElem.hasAttribute("data-height")){
@@ -315,7 +330,64 @@ const animationStorm = {
         }
     },
 
+   fallWriteIn: (elem)=>{
+    let tempText = elem.textContent;
+
+    elem.innerHTML = "&#8203";
+    elem.style.opacity = "100";
+    // SETTINGS
+    let speedSettings = animationStorm.fallWriteSpeed;
+    if(elem.hasAttribute("data-writespeed")){
+        speedSettings = elem.dataset.writespeed;
+    }
+    let fallSpeed = animationStorm.fallWriteFallSpeed;
+    if(elem.hasAttribute("data-fallspeed")){
+        fallSpeed = elem.dataset.fallspeed;
+    }
+    let startSettings = animationStorm.fallWriteStart;
+    if(elem.hasAttribute("data-writestart")){
+        startSettings = elem.dataset.writestart;
+    }
+    let opacitySettings = animationStorm.fallWriteOpacity;
+    if(elem.hasAttribute("data-opacity")){
+        opacitySettings = elem.dataset.opacity;
+    }
+
+    // DOCUMENT FRAGMENT ELEMS
+    const fallingSpan = document.createElement("span");
+    fallingSpan.className = "as-fallwrite-span";
+    let textCount = 0;
+    fallWriteLoop();
+    function fallWriteLoop(){
+        let tempSpan = fallingSpan.cloneNode(false);
+        if(tempText.charAt(textCount)== " "){
+            tempSpan.innerHTML = "&nbsp;";
+        }else {
+            tempSpan.textContent = tempText.charAt(textCount);
+        }
+        
+        tempSpan.style.transform = `translateY(${startSettings})`;
+        if(opacitySettings === false || opacitySettings == "false"){
+            tempSpan.style.animation = `falling_text ${fallSpeed}ms forwards`;  
+        } else{
+            tempSpan.style.animation = `falling_text_opacity ${fallSpeed}ms forwards`;
+        }
+        
+        elem.append(tempSpan);
+        textCount++;
+        if(textCount<tempText.length){setTimeout(fallWriteLoop, Math.random() * (speedSettings - (speedSettings - 10)) + (speedSettings - 10))}
+    }
+   }, 
+
     // CUSTOM TRIGGERS 
+
+    fallWrite: (elem)=>{
+        if(elem.hasAttribute("data-wait")){
+            setTimeout(()=>{animationStorm.fallWriteIn(elem);}, elem.dataset.wait);
+        }else{
+            animationStorm.fallWriteIn(elem);
+        }  
+    },
 
     mulWrite: (elem)=>{
         const currentElemText = elem.querySelectorAll(".as-mulwrite-text");
