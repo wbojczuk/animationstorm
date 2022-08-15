@@ -31,6 +31,12 @@ const animationStorm = {
     fallWriteStart: "-15vh",
     fallWriteOpacity: true,
 
+    //  ROTATE WRITE SETTINGS
+    rotateWriteSpeed: 100,
+    rotateWriteRotateSpeed: 150,
+    rotateWriteStart: "-90deg",
+    rotateWriteOpacity: true,
+
 
     setup: ()=>{
         // ONLOAD TRIGGERS
@@ -85,6 +91,23 @@ const animationStorm = {
                     setTimeout(()=>{animationStorm.fallWriteIn(currentElem);}, currentElem.dataset.wait);
                 }else{
                     animationStorm.fallWriteIn(currentElem);
+                }
+            }
+        }
+
+
+        // ROTATE WRITE
+
+        if(document.querySelector(".as-rotatewrite")){
+            const writeElems = document.querySelectorAll(".as-rotatewrite");
+            const writeElemsLength = writeElems.length;
+            for(let i = 0; i<writeElemsLength; i++){
+                const currentElem = writeElems[i];
+
+                if(currentElem.hasAttribute("data-wait")){
+                    setTimeout(()=>{animationStorm.rotateWriteIn(currentElem);}, currentElem.dataset.wait);
+                }else{
+                    animationStorm.rotateWriteIn(currentElem);
                 }
             }
         }
@@ -332,17 +355,17 @@ const animationStorm = {
 
    fallWriteIn: (elem)=>{
     let tempText = elem.textContent;
-
     elem.innerHTML = "&#8203";
     elem.style.opacity = "100";
+
     // SETTINGS
     let speedSettings = animationStorm.fallWriteSpeed;
     if(elem.hasAttribute("data-writespeed")){
         speedSettings = elem.dataset.writespeed;
     }
     let fallSpeed = animationStorm.fallWriteFallSpeed;
-    if(elem.hasAttribute("data-fallspeed")){
-        fallSpeed = elem.dataset.fallspeed;
+    if(elem.hasAttribute("data-rotatespeed")){
+        fallSpeed = elem.dataset.rotatespeed;
     }
     let startSettings = animationStorm.fallWriteStart;
     if(elem.hasAttribute("data-writestart")){
@@ -379,6 +402,59 @@ const animationStorm = {
     }
    }, 
 
+   rotateWriteIn: (elem)=>{
+    // setup
+    const tempText =  elem.textContent;
+    elem.innerHTML = "&#8203";
+    const textSpan = document.createElement("span");
+    textSpan.className = "as-rotatewritespan";
+    elem.style.opacity = 100;  
+    let textCount = 0;
+
+    // settings
+
+    let opacitySettings = animationStorm.rotateWriteOpacity;
+    if(elem.hasAttribute("data-opacity")){
+        opacitySettings = elem.dataset.opacity;
+    }
+    let speedSettings = animationStorm.rotateWriteSpeed;
+    if(elem.hasAttribute("data-writespeed")){
+        speedSettings = elem.dataset.writespeed;
+    }
+    let fallSpeed = animationStorm.rotateWriteRotateSpeed;
+    if(elem.hasAttribute("data-fallspeed")){
+        fallSpeed = elem.dataset.fallspeed;
+    }
+    let startSettings = animationStorm.rotateWriteStart;
+    if(elem.hasAttribute("data-writestart")){
+        startSettings = elem.dataset.writestart;
+    }
+
+    textSpan.style.transform = `rotate(${startSettings})`;
+
+    rotateWriteLoop();
+    function rotateWriteLoop(){
+        const tempSpan = textSpan.cloneNode(false);
+        if(tempText.charAt(textCount) == " "){
+            tempSpan.innerHTML = "&nbsp;";
+        }else{
+            tempSpan.textContent = tempText.charAt(textCount);
+        }
+
+        if(opacitySettings === false || opacitySettings == "false"){
+            tempSpan.style.animation = `rotate_write ${fallSpeed}ms forwards`;  
+        } else{
+            tempSpan.style.animation = `rotate_write_opacity ${fallSpeed}ms forwards`;
+        }
+        elem.append(tempSpan);
+
+        textCount++;
+        if(textCount<tempText.length){
+            setTimeout(rotateWriteLoop, speedSettings);
+        }
+    }
+   },
+
     // CUSTOM TRIGGERS 
 
     fallWrite: (elem)=>{
@@ -404,6 +480,14 @@ const animationStorm = {
             setTimeout(()=>{animationStorm.simpleWriteStart(elem);}, elem.dataset.wait);
         }else{
             animationStorm.simpleWriteStart(elem);
+        }
+    },
+
+    rotateWrite: (elem)=>{
+        if(elem.hasAttribute("data-wait")){
+            setTimeout(()=>{animationStorm.rotateWriteIn(elem);}, elem.dataset.wait);
+        }else{
+            animationStorm.rotateWriteIn(elem);
         }
     },
 
