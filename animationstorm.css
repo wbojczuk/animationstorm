@@ -86,3 +86,31 @@
 @keyframes falling_text {
     100%{transform: translateY(0);}  
 }
+
+.as-rotatewrite {
+    opacity:0;
+}
+
+.as-rotatewritespan {
+    display: inline-block;
+}
+
+@keyframes rotate_write {
+    0%{
+        opacity: 100;
+    }
+    100%{
+        transform: rotate(0);
+    }
+}
+
+@keyframes rotate_write_opacity {
+    0%{
+        opacity: 0;
+    }
+
+    100%{
+        transform: rotate(0);
+        opacity: 100;
+    }
+}
