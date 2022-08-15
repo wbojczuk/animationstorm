@@ -82,11 +82,11 @@ data-writestart="-15vh" (Where to drop text from)
 
 **TRIGGERS**
 
-OnLoad- default trigger, use the class as-mulwrite<br>
+OnLoad- default trigger, use the class as-fallwrite<br>
 
 Falling Write Animation Useage Example:<br>
 
-    <div class="as-fallwrite" data-delay="1000">Falling Text</div><br>
+    <div class="as-fallwrite" data-writespeed="100">Falling Text</div><br>
     
     
     <h2>ROTATING WRITE ANIMATION</h2><br>
@@ -104,11 +104,11 @@ data-writestart="20deg" (Where to start rotation from)
 
 **TRIGGERS**
 
-OnLoad- default trigger, use the class as-mulwrite<br>
+OnLoad- default trigger, use the class as-rotatewrite<br>
 
-Falling Write Animation Useage Example:<br>
+Rotating Write Animation Useage Example:<br>
 
-    <div class="as-fallwrite" data-delay="1000">Falling Text</div><br>
+    <div class="as-rotatewrite" data-wait="1000">Rotating Text</div><br>
     
     
     <h2>HOW IT WORKS</h2><br>
