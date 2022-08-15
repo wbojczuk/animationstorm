@@ -111,6 +111,29 @@ Rotating Write Animation Useage Example:<br>
     <div class="as-rotatewrite" data-wait="1000">Rotating Text</div><br>
     
     
+<h2>SLIDING WRITE ANIMATION</h2><br>
+Writes text by sliding it into view :D.<br>
+<br>
+
+**OPTIONS**
+
+data-writespeed="ms" (How fast to write text in ms)<br>
+data-wait="1000" (Time in MS to wait before starting any animation)<br>
+data-opacity="true/false" (Whether or not to fade text in during animation)<br>
+data-slidespeed="400" (How fast text slides in ms)<br>
+data-writestart="-5vw" (Where to start slide from)<br>
+data-stretchamount="40deg" (how much should the text be stretched to start)
+<br>
+
+**TRIGGERS**
+
+OnLoad- default trigger, use the class as-rotatewrite<br>
+
+Rotating Write Animation Useage Example:<br>
+
+    <div class="as-rotatewrite" data-wait="1000">Rotating Text</div><br>
+    
+    
     <h2>HOW IT WORKS</h2><br>
     
     
