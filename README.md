@@ -89,7 +89,7 @@ Falling Write Animation Useage Example:<br>
     <div class="as-fallwrite" data-writespeed="100">Falling Text</div><br>
     
     
-    <h2>ROTATING WRITE ANIMATION</h2><br>
+<h2>ROTATING WRITE ANIMATION</h2><br>
 Writes text by rotating it into view :D.<br>
 <br>
 
