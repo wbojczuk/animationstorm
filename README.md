@@ -127,11 +127,11 @@ data-stretchamount="40deg" (how much should the text be stretched to start)
 
 **TRIGGERS**
 
-OnLoad- default trigger, use the class as-rotatewrite<br>
+OnLoad- default trigger, use the class as-slidewrite<br>
 
 Rotating Write Animation Useage Example:<br>
 
-    <div class="as-rotatewrite" data-wait="1000">Rotating Text</div><br>
+    <div class="as-slidewrite" data-wait="1000">Sliding Text</div><br>
     
     
     <h2>HOW IT WORKS</h2><br>
