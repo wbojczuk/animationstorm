@@ -37,6 +37,13 @@ const animationStorm = {
     rotateWriteStart: "-90deg",
     rotateWriteOpacity: true,
 
+    //  SLIDE WRITE SETTINGS
+    slideWriteSpeed: 50,
+    slideWriteSlideSpeed: 500,
+    slideWriteStart: "-5vw",
+    slideWriteOpacity: true,
+    slideWriteStrechAmount: "60deg",
+
 
     setup: ()=>{
         // ONLOAD TRIGGERS
@@ -50,11 +57,7 @@ const animationStorm = {
             for(let i=0; i<writeElemsLength; i++){
                 const currentElem = writeElems[i];
                 
-                if(currentElem.hasAttribute("data-wait")){
-                    setTimeout(()=>{animationStorm.simpleWriteStart(currentElem);}, currentElem.dataset.wait);
-                }else{
-                    animationStorm.simpleWriteStart(currentElem);
-                }
+                currentElem.hasAttribute("data-wait")?setTimeout(()=>{animationStorm.simpleWriteStart(currentElem);}, currentElem.dataset.wait): animationStorm.simpleWriteStart(currentElem);
                 
             }
         } 
@@ -69,11 +72,8 @@ const animationStorm = {
 
                 const currentElemText = currentElem.querySelectorAll(".as-mulwrite-text");
                 currentElem.innerHTML = "&#8203";
-                if(currentElem.hasAttribute("data-wait")){
-                    setTimeout(()=>{animationStorm.mulWriteIn(currentElem, currentElemText);}, currentElem.dataset.wait);
-                }else{
-                    animationStorm.mulWriteIn(currentElem, currentElemText);
-                }
+
+                currentElem.hasAttribute("data-wait")?setTimeout(()=>{animationStorm.mulWriteIn(currentElem, currentElemText);}, currentElem.dataset.wait): animationStorm.mulWriteIn(currentElem, currentElemText);
     
                 
             }
@@ -87,11 +87,7 @@ const animationStorm = {
             for(let i = 0; i<writeElemsLength; i++){
                 const currentElem = writeElems[i];
 
-                if(currentElem.hasAttribute("data-wait")){
-                    setTimeout(()=>{animationStorm.fallWriteIn(currentElem);}, currentElem.dataset.wait);
-                }else{
-                    animationStorm.fallWriteIn(currentElem);
-                }
+                currentElem.hasAttribute("data-wait")?setTimeout(()=>{animationStorm.fallWriteIn(currentElem);}, currentElem.dataset.wait): animationStorm.fallWriteIn(currentElem);
             }
         }
 
@@ -104,11 +100,19 @@ const animationStorm = {
             for(let i = 0; i<writeElemsLength; i++){
                 const currentElem = writeElems[i];
 
-                if(currentElem.hasAttribute("data-wait")){
-                    setTimeout(()=>{animationStorm.rotateWriteIn(currentElem);}, currentElem.dataset.wait);
-                }else{
-                    animationStorm.rotateWriteIn(currentElem);
-                }
+                currentElem.hasAttribute("data-wait")?setTimeout(()=>{animationStorm.rotateWriteIn(currentElem);}, currentElem.dataset.wait): animationStorm.rotateWriteIn(currentElem);
+            }
+        }
+
+        // SLIDE WRITE
+
+        if(document.querySelector(".as-slidewrite")){
+            const writeElems = document.querySelectorAll(".as-slidewrite");
+            const writeElemsLength = writeElems.length;
+            for(let i = 0; i<writeElemsLength; i++){
+                const currentElem = writeElems[i];
+                
+                currentElem.hasAttribute("data-wait")?setTimeout(()=>{animationStorm.slideWriteIn(currentElem);}, currentElem.dataset.wait): animationStorm.slideWriteIn(currentElem);
             }
         }
 
@@ -455,40 +459,121 @@ const animationStorm = {
     }
    },
 
+   slideWriteIn: (elem)=>{
+    // setup
+    const tempText =  elem.textContent;
+    const textSpan = document.createElement("span");
+    textSpan.className = "as-slidewritespan";
+    const textInner = document.createElement("div");
+    textInner.className = "as-slidewrite-inner";
+    elem.prepend(textInner);
+     
+    
+    const currentInner = elem.querySelector(".as-slidewrite-inner");
+    currentInner.style.color = window.getComputedStyle(elem).color;
+    let textCount = 0;
+    elem.style.color = "rgba(0,0,0,0)";
+    elem.style.opacity = 100; 
+    // settings
+
+    let opacitySettings = animationStorm.slideWriteOpacity;
+    if(elem.hasAttribute("data-opacity")){
+        opacitySettings = elem.dataset.opacity;
+    }
+    let speedSettings = animationStorm.slideWriteSpeed;
+    if(elem.hasAttribute("data-writespeed")){
+        speedSettings = elem.dataset.writespeed;
+    }
+    let slideSpeed = animationStorm.slideWriteSlideSpeed;
+    if(elem.hasAttribute("data-slidespeed")){
+        slideSpeed = elem.dataset.slidespeed;
+    }
+    let startSettings = animationStorm.slideWriteStart;
+    if(elem.hasAttribute("data-writestart")){
+        startSettings = elem.dataset.writestart;
+    }
+    let strechSettings = animationStorm.slideWriteStrechAmount;
+    if(elem.hasAttribute("data-strechamount")){
+        strechSettings = elem.dataset.strechamount;
+    }
+
+    textSpan.style.transform = `translateX(${startSettings}) skewX(${strechSettings})`;
+    
+    const tempTextLength = tempText.length;
+if(parseFloat(startSettings) > 0){
+    currentInner.style.textAlign = "left";
+    slideWriteLoopPos();
+}else{
+    currentInner.style.textAlign = "right";
+    slideWriteLoopNeg();
+}
+    
+    function slideWriteLoopNeg(){
+        const tempSpan = textSpan.cloneNode(false);
+        if(tempText.charAt(tempTextLength-textCount) == " "){
+            tempSpan.innerHTML = "&nbsp;";
+        }else{
+            tempSpan.textContent = tempText.charAt(tempTextLength-textCount);
+        }
+
+        if(opacitySettings === false || opacitySettings == "false"){
+            tempSpan.style.animation = `slide_write ${slideSpeed}ms forwards`;  
+        } else{
+            tempSpan.style.animation = `slide_write_opacity ${slideSpeed}ms forwards`;
+        }
+        currentInner.prepend(tempSpan);
+
+        textCount++;
+        if(textCount<=tempText.length){
+            setTimeout(slideWriteLoopNeg, speedSettings);
+        }
+    }
+    function slideWriteLoopPos(){
+        const tempSpan = textSpan.cloneNode(false);
+        if(tempText.charAt(textCount) == " "){
+            tempSpan.innerHTML = "&nbsp;";
+        }else{
+            tempSpan.textContent = tempText.charAt(textCount);
+        }
+
+        if(opacitySettings === false || opacitySettings == "false"){
+            tempSpan.style.animation = `slide_write ${slideSpeed}ms forwards`;  
+        } else{
+            tempSpan.style.animation = `slide_write_opacity ${slideSpeed}ms forwards`;
+        }
+        currentInner.append(tempSpan);
+
+        textCount++;
+        if(textCount<tempText.length){
+            setTimeout(slideWriteLoopPos, speedSettings);
+        }
+    }
+
+
+   },
+
     // CUSTOM TRIGGERS 
 
     fallWrite: (elem)=>{
-        if(elem.hasAttribute("data-wait")){
-            setTimeout(()=>{animationStorm.fallWriteIn(elem);}, elem.dataset.wait);
-        }else{
-            animationStorm.fallWriteIn(elem);
-        }  
+        elem.hasAttribute("data-wait")?setTimeout(()=>{animationStorm.fallWriteIn(elem);}, elem.dataset.wait): animationStorm.fallWriteIn(elem);
     },
 
     mulWrite: (elem)=>{
         const currentElemText = elem.querySelectorAll(".as-mulwrite-text");
-        if(elem.hasAttribute("data-wait")){
-            setTimeout(()=>{animationStorm.mulWriteIn(elem, currentElemText);}, elem.dataset.wait);
-        }else{
-            animationStorm.mulWriteIn(elem, currentElemText);
-        }
+        elem.hasAttribute("data-wait")?setTimeout(()=>{animationStorm.mulWriteIn(elem, currentElemText);}, elem.dataset.wait): animationStorm.mulWriteIn(elem, currentElemText);
         
     },
 
     simpleWrite:(elem)=>{
-        if(elem.hasAttribute("data-wait")){
-            setTimeout(()=>{animationStorm.simpleWriteStart(elem);}, elem.dataset.wait);
-        }else{
-            animationStorm.simpleWriteStart(elem);
-        }
+        elem.hasAttribute("data-wait")?setTimeout(()=>{animationStorm.simpleWriteStart(elem);}, elem.dataset.wait): animationStorm.simpleWriteStart(elem);
     },
 
     rotateWrite: (elem)=>{
-        if(elem.hasAttribute("data-wait")){
-            setTimeout(()=>{animationStorm.rotateWriteIn(elem);}, elem.dataset.wait);
-        }else{
-            animationStorm.rotateWriteIn(elem);
-        }
+        elem.hasAttribute("data-wait")?setTimeout(()=>{animationStorm.rotateWriteIn(elem);}, elem.dataset.wait): animationStorm.rotateWriteIn(elem);
+    },
+
+    slideWrite: (elem)=>{
+        elem.hasAttribute("data-wait")?setTimeout(()=>{animationStorm.slideWriteIn(elem);}, elem.dataset.wait): animationStorm.slideWriteIn(elem);
     },
 
 
