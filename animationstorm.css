@@ -114,3 +114,37 @@
         opacity: 100;
     }
 }
+
+.as-slidewrite {
+    opacity:0;
+    position: relative;
+    text-align: right;
+    display: inline-block;
+    user-select: none;
+    pointer-events: none;
+}
+
+.as-slidewrite-inner{
+    position: absolute;
+    top:0;
+    left:0;
+    width: 100.1%;
+    height:100%;
+    user-select: all;
+    pointer-events: all;
+}
+
+.as-slidewritespan {
+    display: inline-block;
+}
+
+
+
+@keyframes slide_write {
+    100%{transform: translateX(0) skewX(0deg);}
+}
+
+@keyframes slide_write_opacity {
+    0%{opacity:0}
+    100%{opacity:100;transform: translateX(0) skewX(0deg);}
+}
