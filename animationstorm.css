@@ -149,10 +149,10 @@
     100%{opacity:100;transform: translateX(0) skewX(0deg);}
 }
 
-.as-textwave {
+.as-wavewrite {
     opacity:0;
 }
 
-.as-textwave-span {
+.as-wavewrite-span {
     display: inline-block;
 }
