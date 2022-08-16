@@ -13,7 +13,6 @@ const animationStorm = {
      simpleWriteDelay: 2000,
     //  DEFAULT TIME TO IDLE PLACEHOLDER AFTER ANIMATION. Leave null for infinite idling;
      simpleWriteIdle: 2000,
-
      simpleWritePlaceholder: true,
 
      // Multi WRITE SPEED (MS)
@@ -24,11 +23,8 @@ const animationStorm = {
      mulWriteDelay: 2000,
     //  DEFAULT TIME TO IDLE PLACEHOLDER AFTER ANIMATION. Leave null for infinite idling;
      mulWriteIdle: 1000,
-
      mulAfterIdle: null,
-
      mulWritePlaceholder: true,
-
      mulWriteLoop: true,
 
     //  FALLING WRITE SETTINGS
@@ -51,13 +47,13 @@ const animationStorm = {
     slideWriteStretchAmount: "60deg",
 
     // TEXT WAVE SETTINGS
-    textWaveSpeed: 50,
-    textWaveAnimSpeed: 600,
-    textWaveHeight: "4vh",
-    textWaveLoop: false,
-    textWaveLoopIdle: 200,
-    textWaveLoopAlternate: true,
-    textWaveOpacity: true,
+    waveWriteSpeed: 50,
+    waveWriteAnimSpeed: 600,
+    waveWriteHeight: "4vh",
+    waveWriteLoop: false,
+    waveWriteLoopIdle: 200,
+    waveWriteLoopAlternate: true,
+    waveWriteOpacity: true,
 
 
     setup: ()=>{
@@ -139,13 +135,13 @@ const animationStorm = {
 
         // TEXT WAVE
 
-        if(document.querySelector(".as-textwave")){
-            const writeElems = document.querySelectorAll(".as-textwave");
+        if(document.querySelector(".as-wavewrite")){
+            const writeElems = document.querySelectorAll(".as-wavewrite");
             const writeElemsLength = writeElems.length;
             for(let i = 0; i<writeElemsLength; i++){
                 const currentElem = writeElems[i];
                 
-                currentElem.hasAttribute("data-wait")?setTimeout(()=>{animationStorm.textWaveIn(currentElem);}, currentElem.dataset.wait): animationStorm.textWaveIn(currentElem);
+                currentElem.hasAttribute("data-wait")?setTimeout(()=>{animationStorm.waveWriteIn(currentElem);}, currentElem.dataset.wait): animationStorm.waveWriteIn(currentElem);
             }
         }
 
@@ -584,28 +580,28 @@ if(parseFloat(startSettings) > 0){
 
    },
 
-   textWaveIn: (elem)=>{
+   waveWriteIn: (elem)=>{
     // SETUP
     let tempText = elem.textContent;
     elem.innerHTML = "&#8203";
     const textSpan = document.createElement("span");
-    textSpan.className = "as-textwave-span";
+    textSpan.className = "as-wavewrite-span";
     let textCount = 0;
     elem.style.opacity = 100;
     // SETTINGS
-    let heightSettings = animationStorm.textWaveHeight;
+    let heightSettings = animationStorm.waveWriteHeight;
     if(elem.hasAttribute("data-waveheight")){
         heightSettings = elem.dataset.waveheight;
     }
-    let speedSettings = animationStorm.textWaveSpeed;
+    let speedSettings = animationStorm.waveWriteSpeed;
     if(elem.hasAttribute("data-wavespeed")){
         speedSettings = elem.dataset.wavespeed;
     }
-    let animSpeed = animationStorm.textWaveAnimSpeed;
+    let animSpeed = animationStorm.waveWriteAnimSpeed;
     if(elem.hasAttribute("data-animspeed")){
         animSpeed = elem.dataset.animspeed;
     }
-    let opacitySettings = animationStorm.textWaveOpacity;
+    let opacitySettings = animationStorm.waveWriteOpacity;
     if(elem.hasAttribute("data-opacity")){
         opacitySettings = elem.dataset.opacity;
     }
@@ -613,9 +609,9 @@ if(parseFloat(startSettings) > 0){
     let currentAnimation = "";
 
     // SET INDIVIDUAL ANIMATION INSTANCES
-    if(!elem.hasAttribute("data-textwaveinstance")){
-        const currentClass = `textwaveinstance${animationStorm.waveInstances}`;
-        elem.setAttribute("data-textwaveinstance",animationStorm.waveInstances);
+    if(!elem.hasAttribute("data-wavewriteinstance")){
+        const currentClass = `wavewriteinstance${animationStorm.waveWriteInstances}`;
+        elem.setAttribute("data-wavewriteinstance",animationStorm.waveWriteInstances);
 
         if(opacitySettings === false || opacitySettings == "false"){
             document.getElementById("waveStyles").textContent += `
@@ -638,12 +634,12 @@ if(parseFloat(startSettings) > 0){
         
         currentAnimation = `${currentClass} ${animSpeed}ms forwards`;
 
-        animationStorm.waveInstances++;
-    }else if(elem.hasAttribute("data-textwaveinstance")){
-        currentAnimation = `textwaveinstance${elem.dataset.textwaveinstance} ${animSpeed}ms forwards`;
+        animationStorm.waveWriteInstances++;
+    }else if(elem.hasAttribute("data-wavewriteinstance")){
+        currentAnimation = `wavewriteinstance${elem.dataset.waveWriteinstance} ${animSpeed}ms forwards`;
     }
-    textWaveLoopRight()
-    function textWaveLoopRight(){
+    waveWriteLoopRight()
+    function waveWriteLoopRight(){
         const tempSpan = textSpan.cloneNode(false);
         if(tempText.charAt(textCount) == " "){
             tempSpan.innerHTML = "&nbsp;";
@@ -655,7 +651,7 @@ if(parseFloat(startSettings) > 0){
 
         textCount++;
         if(textCount<tempText.length){
-            setTimeout(textWaveLoopRight, speedSettings);
+            setTimeout(waveWriteLoopRight, speedSettings);
         }
     }
 
@@ -685,8 +681,8 @@ if(parseFloat(startSettings) > 0){
     slideWrite: (elem)=>{
         elem.hasAttribute("data-wait")?setTimeout(()=>{animationStorm.slideWriteIn(elem);}, elem.dataset.wait): animationStorm.slideWriteIn(elem);
     },
-    textWave: (elem)=>{
-        elem.hasAttribute("data-wait")?setTimeout(()=>{animationStorm.textWaveIn(elem);}, elem.dataset.wait): animationStorm.textWaveIn(elem);
+    waveWrite: (elem)=>{
+        elem.hasAttribute("data-wait")?setTimeout(()=>{animationStorm.waveWriteIn(elem);}, elem.dataset.wait): animationStorm.waveWriteIn(elem);
     },
 
 
@@ -706,7 +702,7 @@ if(parseFloat(startSettings) > 0){
 
 
     // OBJECT VARIABLES
-    waveInstances: 0,
+    waveWriteInstances: 0,
 
     
 };
