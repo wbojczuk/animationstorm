@@ -132,6 +132,27 @@ OnLoad- default trigger, use the class as-slidewrite<br>
 Rotating Write Animation Useage Example:<br>
 
     <div class="as-slidewrite" data-wait="1000">Sliding Text</div><br>
+
+<h2>WAVE WRITE ANIMATION (IN-DEV)</h2><br>
+Write text by wave<br>
+<br>
+
+**OPTIONS**
+
+data-wavespeed="ms" (How fast to write text in ms)<br>
+data-wait="1000" (Time in MS to wait before starting any animation)<br>
+data-opacity="true/false" (Whether or not to fade text in during animation)<br>
+data-animspeed="400" (How fast the individual letter animates in ms)<br>
+data-waveheight="-5vw" (Where to reverse wave animation)<br>
+<br>
+
+**TRIGGERS**
+
+OnLoad- default trigger, use the class as-wavewrite<br>
+
+Wave Write Animation Useage Example:<br>
+
+    <div class="as-wavewrite" data-wait="1000">Wavy Text</div><br>
     
     
     <h2>HOW IT WORKS</h2><br>
