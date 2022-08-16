@@ -1,3 +1,9 @@
+// INJECT STYLES
+// const styleElem = document.createElement("style");
+// styleElem.textContent = `styles`;
+// document.getElementsByTagName("head")[0].append(styleElem)
+
+
 const animationStorm = {
 
     // OPTIONS
@@ -42,10 +48,25 @@ const animationStorm = {
     slideWriteSlideSpeed: 500,
     slideWriteStart: "-5vw",
     slideWriteOpacity: true,
-    slideWriteStrechAmount: "60deg",
+    slideWriteStretchAmount: "60deg",
+
+    // TEXT WAVE SETTINGS
+    textWaveSpeed: 50,
+    textWaveAnimSpeed: 600,
+    textWaveHeight: "4vh",
+    textWaveLoop: false,
+    textWaveLoopIdle: 200,
+    textWaveLoopAlternate: true,
+    textWaveOpacity: true,
 
 
     setup: ()=>{
+
+        /* TEXT WAVE ANIM STYLESHEET*/
+        const waveStyles = document.createElement("style");
+        waveStyles.setAttribute("id", "waveStyles");
+        
+        document.getElementsByTagName("head")[0].append(waveStyles);
         // ONLOAD TRIGGERS
 
         // SIMPLE WRITE
@@ -116,6 +137,17 @@ const animationStorm = {
             }
         }
 
+        // TEXT WAVE
+
+        if(document.querySelector(".as-textwave")){
+            const writeElems = document.querySelectorAll(".as-textwave");
+            const writeElemsLength = writeElems.length;
+            for(let i = 0; i<writeElemsLength; i++){
+                const currentElem = writeElems[i];
+                
+                currentElem.hasAttribute("data-wait")?setTimeout(()=>{animationStorm.textWaveIn(currentElem);}, currentElem.dataset.wait): animationStorm.textWaveIn(currentElem);
+            }
+        }
 
 
 
@@ -492,9 +524,9 @@ const animationStorm = {
     if(elem.hasAttribute("data-writestart")){
         startSettings = elem.dataset.writestart;
     }
-    let strechSettings = animationStorm.slideWriteStrechAmount;
-    if(elem.hasAttribute("data-strechamount")){
-        strechSettings = elem.dataset.strechamount;
+    let strechSettings = animationStorm.slideWriteStretchAmount;
+    if(elem.hasAttribute("data-stretchamount")){
+        strechSettings = elem.dataset.stretchamount;
     }
 
     textSpan.style.transform = `translateX(${startSettings}) skewX(${strechSettings})`;
@@ -552,6 +584,84 @@ if(parseFloat(startSettings) > 0){
 
    },
 
+   textWaveIn: (elem)=>{
+    // SETUP
+    let tempText = elem.textContent;
+    elem.innerHTML = "&#8203";
+    const textSpan = document.createElement("span");
+    textSpan.className = "as-textwave-span";
+    let textCount = 0;
+    elem.style.opacity = 100;
+    // SETTINGS
+    let heightSettings = animationStorm.textWaveHeight;
+    if(elem.hasAttribute("data-waveheight")){
+        heightSettings = elem.dataset.waveheight;
+    }
+    let speedSettings = animationStorm.textWaveSpeed;
+    if(elem.hasAttribute("data-wavespeed")){
+        speedSettings = elem.dataset.wavespeed;
+    }
+    let animSpeed = animationStorm.textWaveAnimSpeed;
+    if(elem.hasAttribute("data-animspeed")){
+        animSpeed = elem.dataset.animspeed;
+    }
+    let opacitySettings = animationStorm.textWaveOpacity;
+    if(elem.hasAttribute("data-opacity")){
+        opacitySettings = elem.dataset.opacity;
+    }
+
+    let currentAnimation = "";
+
+    // SET INDIVIDUAL ANIMATION INSTANCES
+    if(!elem.hasAttribute("data-textwaveinstance")){
+        const currentClass = `textwaveinstance${animationStorm.waveInstances}`;
+        elem.setAttribute("data-textwaveinstance",animationStorm.waveInstances);
+
+        if(opacitySettings === false || opacitySettings == "false"){
+            document.getElementById("waveStyles").textContent += `
+        @keyframes ${currentClass} {
+            0%{transform: translateY(0);}
+            50%{transform: translateY(${heightSettings});}
+            100%{transform: translateY(0)}
+        }
+        `; 
+        } else{
+            document.getElementById("waveStyles").textContent += `
+        @keyframes ${currentClass} {
+            0%{transform: translateY(0); opacity:0;}
+            50%{transform: translateY(${heightSettings});}
+            100%{transform: translateY(0); opacity: 100;}
+        }
+        `;
+        }
+
+        
+        currentAnimation = `${currentClass} ${animSpeed}ms forwards`;
+
+        animationStorm.waveInstances++;
+    }else if(elem.hasAttribute("data-textwaveinstance")){
+        currentAnimation = `textwaveinstance${elem.dataset.textwaveinstance} ${animSpeed}ms forwards`;
+    }
+    textWaveLoopRight()
+    function textWaveLoopRight(){
+        const tempSpan = textSpan.cloneNode(false);
+        if(tempText.charAt(textCount) == " "){
+            tempSpan.innerHTML = "&nbsp;";
+        }else{
+            tempSpan.textContent = tempText.charAt(textCount);
+        }
+        tempSpan.style.animation = currentAnimation;
+        elem.append(tempSpan);
+
+        textCount++;
+        if(textCount<tempText.length){
+            setTimeout(textWaveLoopRight, speedSettings);
+        }
+    }
+
+
+   },
+
     // CUSTOM TRIGGERS 
 
     fallWrite: (elem)=>{
@@ -575,6 +685,9 @@ if(parseFloat(startSettings) > 0){
     slideWrite: (elem)=>{
         elem.hasAttribute("data-wait")?setTimeout(()=>{animationStorm.slideWriteIn(elem);}, elem.dataset.wait): animationStorm.slideWriteIn(elem);
     },
+    textWave: (elem)=>{
+        elem.hasAttribute("data-wait")?setTimeout(()=>{animationStorm.textWaveIn(elem);}, elem.dataset.wait): animationStorm.textWaveIn(elem);
+    },
 
 
     // EVENT HANDLERS
@@ -590,6 +703,10 @@ if(parseFloat(startSettings) > 0){
         }
         
     },
+
+
+    // OBJECT VARIABLES
+    waveInstances: 0,
 
     
 };
