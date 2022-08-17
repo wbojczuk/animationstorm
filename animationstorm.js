@@ -8,7 +8,7 @@ const animationStorm = {
 
     // OPTIONS
     // SIMPLE WRITE SPEED (MS)
-     simpleWriteSpeed :40,
+     simpleWriteSpeed: 40,
     //  DEFAULT  ALSO IN MS
      simpleWriteDelay: 2000,
     //  DEFAULT TIME TO IDLE PLACEHOLDER AFTER ANIMATION. Leave null for infinite idling;
@@ -54,6 +54,7 @@ const animationStorm = {
     waveWriteLoopIdle: 200,
     waveWriteLoopAlternate: true,
     waveWriteOpacity: true,
+    waveWriteDirection: "left",
 
 
     setup: ()=>{
@@ -176,10 +177,17 @@ const animationStorm = {
         placeholderSpan.setAttribute("class", "as-write-placeholder");
         spanInner.setAttribute("class", "as-write-inner");
         let tempText = currentElem.textContent;
-        currentElem.innerHTML = "&#8203";
-
-        currentElem.append(spanInner.cloneNode(false))
-        const currentElemInner = currentElem.querySelector(".as-write-inner");
+        const textInner = document.createElement("div");
+        textInner.className = "as-write-inject";
+        textInner.style.textAlign = "left";
+        currentElem.prepend(textInner);
+        const currentInner = currentElem.querySelector(".as-write-inject");
+        currentInner.style.color = window.getComputedStyle(currentElem).color;
+        currentElem.style.color = "rgba(0,0,0,0)";
+        currentElem.style.opacity = 100;
+        currentInner.innerHTML = "&#8203";
+        currentInner.append(spanInner.cloneNode(false))
+        const currentElemInner = currentInner.querySelector(".as-write-inner");
        
         currentElemInner.append(placeholderSpan.cloneNode(false));
         const currentPlaceholder = currentElemInner.querySelector(".as-write-placeholder");
@@ -387,8 +395,14 @@ const animationStorm = {
 
    fallWriteIn: (elem)=>{
     let tempText = elem.textContent;
-    elem.innerHTML = "&#8203";
-    elem.style.opacity = "100";
+    const innerElem = document.createElement("div");
+    innerElem.className = "as-write-inject";
+    innerElem.style.textAlign = "left";
+    innerElem.style.color = window.getComputedStyle(elem).color;
+    elem.append(innerElem);
+    elem.style.color="rgba(0,0,0,0)";
+    elem.style.opacity = 100;
+    const currentInner = elem.querySelector(".as-write-inject"); 
 
     // SETTINGS
     let speedSettings = animationStorm.fallWriteSpeed;
@@ -428,7 +442,7 @@ const animationStorm = {
             tempSpan.style.animation = `falling_text_opacity ${fallSpeed}ms forwards`;
         }
         
-        elem.append(tempSpan);
+        currentInner.append(tempSpan);
         textCount++;
         if(textCount<tempText.length){setTimeout(fallWriteLoop, Math.random() * (speedSettings - (speedSettings - 10)) + (speedSettings - 10))}
     }
@@ -437,10 +451,16 @@ const animationStorm = {
    rotateWriteIn: (elem)=>{
     // setup
     const tempText =  elem.textContent;
-    elem.innerHTML = "&#8203";
     const textSpan = document.createElement("span");
     textSpan.className = "as-rotatewritespan";
-    elem.style.opacity = 100;  
+    const innerElem = document.createElement("div");
+    innerElem.className = "as-write-inject";
+    innerElem.style.textAlign = "left";
+    innerElem.style.color = window.getComputedStyle(elem).color;
+    elem.append(innerElem);
+    elem.style.color="rgba(0,0,0,0)";
+    elem.style.opacity = 100;
+    const currentInner = elem.querySelector(".as-write-inject"); 
     let textCount = 0;
 
     // settings
@@ -478,7 +498,7 @@ const animationStorm = {
         } else{
             tempSpan.style.animation = `rotate_write_opacity ${fallSpeed}ms forwards`;
         }
-        elem.append(tempSpan);
+        currentInner.append(tempSpan);
 
         textCount++;
         if(textCount<tempText.length){
@@ -493,11 +513,9 @@ const animationStorm = {
     const textSpan = document.createElement("span");
     textSpan.className = "as-slidewritespan";
     const textInner = document.createElement("div");
-    textInner.className = "as-slidewrite-inner";
+    textInner.className = "as-write-inject";
     elem.prepend(textInner);
-     
-    
-    const currentInner = elem.querySelector(".as-slidewrite-inner");
+    const currentInner = elem.querySelector(".as-write-inject");
     currentInner.style.color = window.getComputedStyle(elem).color;
     let textCount = 0;
     elem.style.color = "rgba(0,0,0,0)";
@@ -583,11 +601,18 @@ if(parseFloat(startSettings) > 0){
    waveWriteIn: (elem)=>{
     // SETUP
     let tempText = elem.textContent;
-    elem.innerHTML = "&#8203";
     const textSpan = document.createElement("span");
     textSpan.className = "as-wavewrite-span";
     let textCount = 0;
+
+    const innerElem = document.createElement("div");
+    innerElem.className = "as-write-inject";
+    innerElem.style.color = window.getComputedStyle(elem).color;
+    elem.append(innerElem);
+    elem.style.color="rgba(0,0,0,0)";
     elem.style.opacity = 100;
+    const currentInner = elem.querySelector(".as-write-inject");
+    
     // SETTINGS
     let heightSettings = animationStorm.waveWriteHeight;
     if(elem.hasAttribute("data-waveheight")){
@@ -605,6 +630,11 @@ if(parseFloat(startSettings) > 0){
     if(elem.hasAttribute("data-opacity")){
         opacitySettings = elem.dataset.opacity;
     }
+    let directionSettings = animationStorm.waveWriteDirection.toLowerCase();
+    if(elem.hasAttribute("data-direction")){
+        directionSettings = elem.dataset.direction.toLowerCase();
+    }
+    
 
     let currentAnimation = "";
 
@@ -633,12 +663,19 @@ if(parseFloat(startSettings) > 0){
 
         
         currentAnimation = `${currentClass} ${animSpeed}ms forwards`;
-
+        
         animationStorm.waveWriteInstances++;
     }else if(elem.hasAttribute("data-wavewriteinstance")){
         currentAnimation = `wavewriteinstance${elem.dataset.waveWriteinstance} ${animSpeed}ms forwards`;
     }
-    waveWriteLoopRight()
+    const textLength = tempText.length;
+    if(directionSettings=="right"){
+        currentInner.style.textAlign = "left";
+        waveWriteLoopRight();
+    }else if(directionSettings=="left"){
+        waveWriteLoopLeft();
+    }
+    
     function waveWriteLoopRight(){
         const tempSpan = textSpan.cloneNode(false);
         if(tempText.charAt(textCount) == " "){
@@ -647,11 +684,29 @@ if(parseFloat(startSettings) > 0){
             tempSpan.textContent = tempText.charAt(textCount);
         }
         tempSpan.style.animation = currentAnimation;
-        elem.append(tempSpan);
+        currentInner.append(tempSpan);
 
         textCount++;
         if(textCount<tempText.length){
             setTimeout(waveWriteLoopRight, speedSettings);
+        }
+    }
+    
+    function waveWriteLoopLeft(){
+        
+        const currentChar = textLength-textCount;
+        const tempSpan = textSpan.cloneNode(false);
+        if(tempText.charAt(currentChar) == " "){
+            tempSpan.innerHTML = "&nbsp;";
+        }else{
+            tempSpan.textContent = tempText.charAt(currentChar);
+        }
+        tempSpan.style.animation = currentAnimation;
+        currentInner.prepend(tempSpan);
+
+        textCount++;
+        if(textCount<=tempText.length){
+            setTimeout(waveWriteLoopLeft, speedSettings);
         }
     }
 
