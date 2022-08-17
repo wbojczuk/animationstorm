@@ -133,8 +133,8 @@ Rotating Write Animation Useage Example:<br>
 
     <div class="as-slidewrite" data-wait="1000">Sliding Text</div><br>
 
-<h2>WAVE WRITE ANIMATION (IN-DEV)</h2><br>
-Write text by wave<br>
+<h2>WAVE WRITE ANIMATION</h2><br>
+Write text by sending a wave :D<br>
 <br>
 
 **OPTIONS**
@@ -144,6 +144,7 @@ data-wait="1000" (Time in MS to wait before starting any animation)<br>
 data-opacity="true/false" (Whether or not to fade text in during animation)<br>
 data-animspeed="400" (How fast the individual letter animates in ms)<br>
 data-waveheight="-5vw" (Where to reverse wave animation)<br>
+data-direction="left/right" (Which way should the wave flow?)
 <br>
 
 **TRIGGERS**
