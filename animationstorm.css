@@ -1,5 +1,10 @@
 .as-write {
-    opacity: 0;
+    opacity:0;
+    position: relative;
+    text-align: right;
+    display: inline-block;
+    user-select: none;
+    pointer-events: none;
 }
 
 .as-write-hover {
@@ -72,6 +77,11 @@
 
 .as-fallwrite{
     opacity:0;
+    position: relative;
+    text-align: right;
+    display: inline-block;
+    user-select: none;
+    pointer-events: none;
 }
 
 .as-fallwrite-span{
@@ -89,6 +99,11 @@
 
 .as-rotatewrite {
     opacity:0;
+    position: relative;
+    text-align: right;
+    display: inline-block;
+    user-select: none;
+    pointer-events: none;
 }
 
 .as-rotatewritespan {
@@ -128,7 +143,7 @@
     position: absolute;
     top:0;
     left:0;
-    width: 100.3%;
+    width: 100.1%;
     height:100%;
     user-select: all;
     pointer-events: all;
@@ -151,8 +166,23 @@
 
 .as-wavewrite {
     opacity:0;
+    position: relative;
+    display: inline-block;
+    user-select: none;
+    pointer-events: none;
 }
 
 .as-wavewrite-span {
     display: inline-block;
+}
+
+.as-write-inject{
+    position: absolute;
+    top:0;
+    left:0;
+    min-width: 100.3%;
+    height:100%;
+    user-select: all;
+    pointer-events: all;
+    text-align: right;
 }
