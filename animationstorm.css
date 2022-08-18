@@ -87,6 +87,7 @@
 
 .as-fallwrite-span{
     display: inline-block;
+    white-space: pre;
 }
 
 @keyframes falling_text_opacity {
@@ -109,6 +110,7 @@
 
 .as-rotatewritespan {
     display: inline-block;
+    white-space: pre;
 }
 
 @keyframes rotate_write {
@@ -152,9 +154,8 @@
 
 .as-slidewritespan {
     display: inline-block;
+    white-space: pre;
 }
-
-
 
 @keyframes slide_write {
     100%{transform: translateX(0) skewX(0deg);}
@@ -175,15 +176,18 @@
 
 .as-wavewrite-span {
     display: inline-block;
+    white-space: pre;
+    text-align: center;
 }
 
 .as-write-inject{
     position: absolute;
     top:0;
     left:0;
-    min-width: 100.3%;
+    width: 100%;
     height:100%;
     user-select: all;
     pointer-events: all;
     text-align: right;
+    white-space: pre;
 }
