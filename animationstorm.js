@@ -205,8 +205,11 @@ const animationStorm = {
             currentPlaceholder.style.width = currentElem.dataset.width;
         }
 
-        if(currentElem.hasAttribute("data-offset")){
-            currentPlaceholder.style.right = currentElem.dataset.offset;
+        if(currentElem.hasAttribute("data-offseth")){
+            currentPlaceholder.style.right = currentElem.dataset.offseth;
+        }
+        if(currentElem.hasAttribute("data-offsetv")){
+            currentPlaceholder.style.top = currentElem.dataset.offsetv;
         }
 
         if(currentElem.hasAttribute("data-height")){
@@ -253,6 +256,10 @@ const animationStorm = {
                     if(currentIdle){
                         setTimeout(()=>{
                             currentPlaceholder.addEventListener("animationiteration", ()=>{currentPlaceholder.remove();})
+                                currentElem.style.color = window.getComputedStyle(currentElemInner).color;
+                                currentInner.remove();
+                                
+                            
                             }, currentIdle);
                     }
                 }
@@ -429,11 +436,9 @@ const animationStorm = {
     fallWriteLoop();
     function fallWriteLoop(){
         let tempSpan = fallingSpan.cloneNode(false);
-        if(tempText.charAt(textCount)== " "){
-            tempSpan.innerHTML = "&nbsp;";
-        }else {
+        
             tempSpan.textContent = tempText.charAt(textCount);
-        }
+        
         
         tempSpan.style.transform = `translateY(${startSettings})`;
         if(opacitySettings === false || opacitySettings == "false"){
@@ -444,7 +449,12 @@ const animationStorm = {
         
         currentInner.append(tempSpan);
         textCount++;
-        if(textCount<tempText.length){setTimeout(fallWriteLoop, Math.random() * (speedSettings - (speedSettings - 10)) + (speedSettings - 10))}
+        if(textCount<tempText.length){setTimeout(fallWriteLoop, Math.random() * (speedSettings - (speedSettings - 10)) + (speedSettings - 10))}else{
+            tempSpan.addEventListener("animationend", ()=>{
+                elem.style.color = window.getComputedStyle(currentInner).color;
+                currentInner.remove();
+            }); 
+        }
     }
    }, 
 
@@ -474,8 +484,8 @@ const animationStorm = {
         speedSettings = elem.dataset.writespeed;
     }
     let fallSpeed = animationStorm.rotateWriteRotateSpeed;
-    if(elem.hasAttribute("data-fallspeed")){
-        fallSpeed = elem.dataset.fallspeed;
+    if(elem.hasAttribute("data-rotatespeed")){
+        fallSpeed = elem.dataset.rotatespeed;
     }
     let startSettings = animationStorm.rotateWriteStart;
     if(elem.hasAttribute("data-writestart")){
@@ -487,11 +497,9 @@ const animationStorm = {
     rotateWriteLoop();
     function rotateWriteLoop(){
         const tempSpan = textSpan.cloneNode(false);
-        if(tempText.charAt(textCount) == " "){
-            tempSpan.innerHTML = "&nbsp;";
-        }else{
+       
             tempSpan.textContent = tempText.charAt(textCount);
-        }
+        
 
         if(opacitySettings === false || opacitySettings == "false"){
             tempSpan.style.animation = `rotate_write ${fallSpeed}ms forwards`;  
@@ -503,6 +511,11 @@ const animationStorm = {
         textCount++;
         if(textCount<tempText.length){
             setTimeout(rotateWriteLoop, speedSettings);
+        }else{
+            tempSpan.addEventListener("animationend", ()=>{
+                elem.style.color = window.getComputedStyle(currentInner).color;
+                currentInner.remove();
+            }); 
         }
     }
    },
@@ -556,11 +569,9 @@ if(parseFloat(startSettings) > 0){
     
     function slideWriteLoopNeg(){
         const tempSpan = textSpan.cloneNode(false);
-        if(tempText.charAt(tempTextLength-textCount) == " "){
-            tempSpan.innerHTML = "&nbsp;";
-        }else{
+        
             tempSpan.textContent = tempText.charAt(tempTextLength-textCount);
-        }
+        
 
         if(opacitySettings === false || opacitySettings == "false"){
             tempSpan.style.animation = `slide_write ${slideSpeed}ms forwards`;  
@@ -572,15 +583,18 @@ if(parseFloat(startSettings) > 0){
         textCount++;
         if(textCount<=tempText.length){
             setTimeout(slideWriteLoopNeg, speedSettings);
+        }else{
+            tempSpan.addEventListener("animationend", ()=>{
+                elem.style.color = window.getComputedStyle(currentInner).color;
+                currentInner.remove();
+            }); 
         }
     }
     function slideWriteLoopPos(){
         const tempSpan = textSpan.cloneNode(false);
-        if(tempText.charAt(textCount) == " "){
-            tempSpan.innerHTML = "&nbsp;";
-        }else{
+        
             tempSpan.textContent = tempText.charAt(textCount);
-        }
+        
 
         if(opacitySettings === false || opacitySettings == "false"){
             tempSpan.style.animation = `slide_write ${slideSpeed}ms forwards`;  
@@ -592,6 +606,11 @@ if(parseFloat(startSettings) > 0){
         textCount++;
         if(textCount<tempText.length){
             setTimeout(slideWriteLoopPos, speedSettings);
+        }else{
+            tempSpan.addEventListener("animationend", ()=>{
+                elem.style.color = window.getComputedStyle(currentInner).color;
+                currentInner.remove();
+            }); 
         }
     }
 
@@ -671,24 +690,30 @@ if(parseFloat(startSettings) > 0){
     const textLength = tempText.length;
     if(directionSettings=="right"){
         currentInner.style.textAlign = "left";
+        elem.style.textAlign = "left";
         waveWriteLoopRight();
     }else if(directionSettings=="left"){
+        elem.style.textAlign = "right";
         waveWriteLoopLeft();
+        
     }
     
     function waveWriteLoopRight(){
         const tempSpan = textSpan.cloneNode(false);
-        if(tempText.charAt(textCount) == " "){
-            tempSpan.innerHTML = "&nbsp;";
-        }else{
+       
             tempSpan.textContent = tempText.charAt(textCount);
-        }
+        
         tempSpan.style.animation = currentAnimation;
         currentInner.append(tempSpan);
 
         textCount++;
         if(textCount<tempText.length){
             setTimeout(waveWriteLoopRight, speedSettings);
+        }else{
+            tempSpan.addEventListener("animationend", ()=>{
+                elem.style.color = window.getComputedStyle(currentInner).color;
+                currentInner.remove();
+            }); 
         }
     }
     
@@ -696,17 +721,21 @@ if(parseFloat(startSettings) > 0){
         
         const currentChar = textLength-textCount;
         const tempSpan = textSpan.cloneNode(false);
-        if(tempText.charAt(currentChar) == " "){
-            tempSpan.innerHTML = "&nbsp;";
-        }else{
+        
+        
             tempSpan.textContent = tempText.charAt(currentChar);
-        }
+        
         tempSpan.style.animation = currentAnimation;
         currentInner.prepend(tempSpan);
 
         textCount++;
         if(textCount<=tempText.length){
             setTimeout(waveWriteLoopLeft, speedSettings);
+        }else{
+            tempSpan.addEventListener("animationend", ()=>{
+                elem.style.color = window.getComputedStyle(currentInner).color;
+                currentInner.remove();
+            }); 
         }
     }
 
