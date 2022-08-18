@@ -7,6 +7,9 @@
     <title>Animation Storm</title>
     <link rel="stylesheet" href="animationstorm.css">
     <script src="animationstorm.js" defer></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bungee+Shade&display=swap" rel="stylesheet">
     <style>
         *{
     margin:0;
@@ -25,8 +28,7 @@ body{
 
 .site-title{
     color: #C70039;
-    font-family: monospace;
-    margin-top: 50px;
+    font-family: 'Bungee Shade', cursive;
     font-size: 5vw;
     font-weight: 800;
     
@@ -37,7 +39,6 @@ body{
     color: #900C3F;
     font-family: monospace;
     transform: translateX(38vw);
-    margin-top: 50px;
     font-size: 2vw;
     font-weight: 800;
 }
@@ -52,7 +53,7 @@ body{
 .waving-text{
     display: inline-block;
     color: #900C3F;
-    font-family: monospace;
+    font-family: 'Bungee Shade', cursive;
     margin-top: 60px;
     font-size: 3vw;
     font-weight: 800;
@@ -61,19 +62,19 @@ body{
 </head>
 <body>
     <div class="center">
-    <span style="display:inline-block;" data-wait="500" data-delay="500" data-offset="-10px" data-height="90%" data-width="5px" class="site-title as-write" data-color="#C70039">Animation Storm</span></div><br>
+    <span style="display:inline-block;" data-wait="500" data-delay="500" data-offseth="-10px" data-offsetv="25%" data-height="50%" data-width="6px" class="site-title as-write" data-color="#C70039">Animation Storm</span></div><br>
     
     
 <div class="center">
-    <span data-wait="2000" data-writespeed="80" class="as-rotatewrite falling-text">There is Rotating Text</span></div><br>
+    <span style="margin-top: 0;" data-rotatespeed="300" data-wait="2000" data-writespeed="100" class="as-rotatewrite falling-text">There is Rotating Text</span></div><br>
 
 <div class="center">
     <span data-wait="4000" data-writespeed="100" class="as-fallwrite falling-text">There is Falling Text</span></div><br>
 
     <div class="center">
-    <span data-wait="6000" class="as-slidewrite falling-text">There is Sliding Text</span><br>
+    <span data-wait="6000" data-writestart="-10vh" class="as-slidewrite falling-text">There is Sliding Text</span><br>
 </div>
-    <div class="center"><span data-wait="8000" data-direction="left" data-waveheight="-4vw" class="as-wavewrite waving-text">There is Waving Text</span></div><br>
+    <div class="center"><span data-wait="8000" data-direction="right" data-waveheight="-4vw" class="as-wavewrite waving-text">There is Waving Text</span></div><br>
 
     <span class="site-description as-mulwrite" data-color="#900C3F" data-delay="2000" data-wait="9000">
         <span class="as-mulwrite-text">Not One Dependency</span>
