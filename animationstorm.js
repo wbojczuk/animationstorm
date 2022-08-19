@@ -50,9 +50,6 @@ const animationStorm = {
     waveWriteSpeed: 50,
     waveWriteAnimSpeed: 600,
     waveWriteHeight: "4vh",
-    waveWriteLoop: false,
-    waveWriteLoopIdle: 200,
-    waveWriteLoopAlternate: true,
     waveWriteOpacity: true,
     waveWriteDirection: "left",
 
