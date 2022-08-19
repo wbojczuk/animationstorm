@@ -7,9 +7,6 @@
     pointer-events: none;
 }
 
-.as-write-hover {
-    opacity: 0;
-}
 
 .as-write-inner {
     position: relative;
