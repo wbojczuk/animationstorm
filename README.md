@@ -10,7 +10,7 @@ DEVLOG/BLOG- https://williambojczuk.blogspot.com/search/label/animationstorm
 
 <h2>SIMPLE WRITE ANIMATION</h2>
 
-Most animations be triggered using either built-in triggers Onload or Onhover, or with custom triggers (see each animation for details).
+Most animations be triggered using either the default Onload trigger, or by tying the animation trigger to a custom event (see each animation for details).
 
 **OPTIONS**
 
@@ -26,7 +26,6 @@ data-offseth="-5px" (Horizontal offset of the placeholder relative to the text. 
 <br>
 **TRIGGERS**<br>
 OnLoad- default trigger, use the class as-write.<br>
-OnHover- use class as-write-hover.<br>
 CUSTOM- animationStorm.simpleWrite(element);<br>
 
 <br>
