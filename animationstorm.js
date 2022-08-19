@@ -146,25 +146,6 @@ const animationStorm = {
             }
         }
 
-
-
-        // ON HOVER LISTENERS
-
-        // SIMPLE WRITE
-
-        if(document.querySelectorAll(".as-write-hover")){
-            const writeElems = document.querySelectorAll(".as-write-hover");
-            const writeElemsLength = writeElems.length;
-
-            for(let i=0; i<writeElemsLength; i++){
-                const currentElem = writeElems[i];
-                currentElem.addEventListener("mouseover", animationStorm.simpleWriteHandler);
-                
-            }
-        } 
-
-        // END On Hover
-
         
 
 
@@ -258,7 +239,7 @@ const animationStorm = {
                             currentPlaceholder.addEventListener("animationiteration", ()=>{currentPlaceholder.remove();})
                                 currentElem.style.color = window.getComputedStyle(currentElemInner).color;
                                 currentInner.remove();
-                                
+                                currentElem.classList.remove("as-write");
                             
                             }, currentIdle);
                     }
@@ -453,6 +434,7 @@ const animationStorm = {
             tempSpan.addEventListener("animationend", ()=>{
                 elem.style.color = window.getComputedStyle(currentInner).color;
                 currentInner.remove();
+                elem.classList.remove("as-fallwrite");
             }); 
         }
     }
@@ -515,6 +497,7 @@ const animationStorm = {
             tempSpan.addEventListener("animationend", ()=>{
                 elem.style.color = window.getComputedStyle(currentInner).color;
                 currentInner.remove();
+                elem.classList.remove("as-rotatewrite");
             }); 
         }
     }
@@ -587,6 +570,7 @@ if(parseFloat(startSettings) > 0){
             tempSpan.addEventListener("animationend", ()=>{
                 elem.style.color = window.getComputedStyle(currentInner).color;
                 currentInner.remove();
+                elem.classList.remove("as-slidewrite");
             }); 
         }
     }
@@ -610,6 +594,7 @@ if(parseFloat(startSettings) > 0){
             tempSpan.addEventListener("animationend", ()=>{
                 elem.style.color = window.getComputedStyle(currentInner).color;
                 currentInner.remove();
+                elem.classList.remove("as-slidewrite");
             }); 
         }
     }
@@ -713,6 +698,7 @@ if(parseFloat(startSettings) > 0){
             tempSpan.addEventListener("animationend", ()=>{
                 elem.style.color = window.getComputedStyle(currentInner).color;
                 currentInner.remove();
+                elem.classList.remove("as-wavewrite");
             }); 
         }
     }
@@ -735,6 +721,7 @@ if(parseFloat(startSettings) > 0){
             tempSpan.addEventListener("animationend", ()=>{
                 elem.style.color = window.getComputedStyle(currentInner).color;
                 currentInner.remove();
+                elem.classList.remove("as-wavewrite");
             }); 
         }
     }
@@ -769,20 +756,6 @@ if(parseFloat(startSettings) > 0){
         elem.hasAttribute("data-wait")?setTimeout(()=>{animationStorm.waveWriteIn(elem);}, elem.dataset.wait): animationStorm.waveWriteIn(elem);
     },
 
-
-    // EVENT HANDLERS
-
-    // simpleWrite ON HOVER
-    simpleWriteHandler: (evt)=>{
-        evt.target.removeEventListener("mouseover", animationStorm.simpleWriteHandler);
-
-        if(evt.target.hasAttribute("data-wait")){
-            setTimeout(()=>{animationStorm.simpleWriteStart(evt.target);}, evt.target.dataset.wait);
-        }else{
-            animationStorm.simpleWriteStart(evt.target);
-        }
-        
-    },
 
 
     // OBJECT VARIABLES
