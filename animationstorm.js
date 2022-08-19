@@ -240,7 +240,7 @@ const animationStorm = {
                                 currentElem.style.color = window.getComputedStyle(currentElemInner).color;
                                 currentInner.remove();
                                 currentElem.classList.remove("as-write");
-                            
+                                animationStorm.removeData(currentElem);
                             }, currentIdle);
                     }
                 }
@@ -435,6 +435,7 @@ const animationStorm = {
                 elem.style.color = window.getComputedStyle(currentInner).color;
                 currentInner.remove();
                 elem.classList.remove("as-fallwrite");
+                animationStorm.removeData(elem);
             }); 
         }
     }
@@ -498,6 +499,7 @@ const animationStorm = {
                 elem.style.color = window.getComputedStyle(currentInner).color;
                 currentInner.remove();
                 elem.classList.remove("as-rotatewrite");
+                animationStorm.removeData(elem);
             }); 
         }
     }
@@ -571,6 +573,7 @@ if(parseFloat(startSettings) > 0){
                 elem.style.color = window.getComputedStyle(currentInner).color;
                 currentInner.remove();
                 elem.classList.remove("as-slidewrite");
+                animationStorm.removeData(elem);
             }); 
         }
     }
@@ -595,6 +598,7 @@ if(parseFloat(startSettings) > 0){
                 elem.style.color = window.getComputedStyle(currentInner).color;
                 currentInner.remove();
                 elem.classList.remove("as-slidewrite");
+                animationStorm.removeData(elem);
             }); 
         }
     }
@@ -643,9 +647,9 @@ if(parseFloat(startSettings) > 0){
     let currentAnimation = "";
 
     // SET INDIVIDUAL ANIMATION INSTANCES
-    if(!elem.hasAttribute("data-wavewriteinstance")){
+    
         const currentClass = `wavewriteinstance${animationStorm.waveWriteInstances}`;
-        elem.setAttribute("data-wavewriteinstance",animationStorm.waveWriteInstances);
+        
 
         if(opacitySettings === false || opacitySettings == "false"){
             document.getElementById("waveStyles").textContent += `
@@ -663,14 +667,12 @@ if(parseFloat(startSettings) > 0){
             100%{transform: translateY(0); opacity: 100;}
         }
         `;
-        }
+        
 
         
         currentAnimation = `${currentClass} ${animSpeed}ms forwards`;
         
         animationStorm.waveWriteInstances++;
-    }else if(elem.hasAttribute("data-wavewriteinstance")){
-        currentAnimation = `wavewriteinstance${elem.dataset.waveWriteinstance} ${animSpeed}ms forwards`;
     }
     const textLength = tempText.length;
     if(directionSettings=="right"){
@@ -699,6 +701,7 @@ if(parseFloat(startSettings) > 0){
                 elem.style.color = window.getComputedStyle(currentInner).color;
                 currentInner.remove();
                 elem.classList.remove("as-wavewrite");
+                animationStorm.removeData(elem);
             }); 
         }
     }
@@ -722,6 +725,7 @@ if(parseFloat(startSettings) > 0){
                 elem.style.color = window.getComputedStyle(currentInner).color;
                 currentInner.remove();
                 elem.classList.remove("as-wavewrite");
+                animationStorm.removeData(elem);
             }); 
         }
     }
@@ -756,6 +760,34 @@ if(parseFloat(startSettings) > 0){
         elem.hasAttribute("data-wait")?setTimeout(()=>{animationStorm.waveWriteIn(elem);}, elem.dataset.wait): animationStorm.waveWriteIn(elem);
     },
 
+
+
+    // REMOVE DATA ATTRIBUTES
+    removeData: (elem)=>{
+        elem.removeAttribute("data-writespeed");
+        elem.removeAttribute("data-wait");
+        elem.removeAttribute("data-placeholder");
+        elem.removeAttribute("data-delay");
+        elem.removeAttribute("data-idle");
+        elem.removeAttribute("data-color");
+        elem.removeAttribute("data-width");
+        elem.removeAttribute("data-height");
+        elem.removeAttribute("data-offsetv");
+        elem.removeAttribute("data-offseth");
+        elem.removeAttribute("data-loop");
+        elem.removeAttribute("data-afteridle");
+        elem.removeAttribute("data-delspeed");
+        elem.removeAttribute("data-opacity");
+        elem.removeAttribute("data-fallspeed");
+        elem.removeAttribute("data-writestart");
+        elem.removeAttribute("data-rotatespeed");
+        elem.removeAttribute("data-slidespeed");
+        elem.removeAttribute("data-stretchamount");
+        elem.removeAttribute("data-animspeed");
+        elem.removeAttribute("data-waveheight");
+        elem.removeAttribute("data-direction");
+        elem.removeAttribute("data-wavespeed");
+    },
 
 
     // OBJECT VARIABLES
