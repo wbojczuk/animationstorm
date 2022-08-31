@@ -6,7 +6,11 @@ It is an animation framework built from vanilla JavaScript and CSS. Animations a
 
 DEMO- https://wbojczuk.github.io/animationstorm/
 
-DEVLOG/BLOG- https://williambojczuk.blogspot.com/search/label/animationstorm
+DEVLOG/BLOG- https://williambojczuk.blogspot.com/search/label/animationstorm <br>
+
+<h2>Settings that all text aniamtion have</h2><br>
+data-initialstate-"true/false" (Whether or not to return element to initial state... Some stylish fonts may not revert extremely well)<br>
+
 
 <h2>SIMPLE WRITE ANIMATION</h2>
 
