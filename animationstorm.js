@@ -29,7 +29,7 @@ const animationStorm = {
 
     //  FALLING WRITE SETTINGS
     fallWriteSpeed: 40,
-    fallWriteFallSpeed: 800,
+    fallWriteFallSpeed: 1000,
     fallWriteStart: "-15vh",
     fallWriteOpacity: true,
 
@@ -237,7 +237,7 @@ const animationStorm = {
                             currentPlaceholder.addEventListener("animationiteration", ()=>{currentPlaceholder.remove();})
                             let initialState = animationStorm.initialState;
                             if(currentElem.hasAttribute("data-initialstate")){
-                                initialState = (currentElem.dataset.initialState == "true");
+                                initialState = (currentElem.dataset.initialstate == "true");
                             }
                             if(initialState){
                                 currentElem.style.color = window.getComputedStyle(currentElemInner).color;
@@ -440,7 +440,8 @@ const animationStorm = {
 
                 let initialState = animationStorm.initialState;
                 if(elem.hasAttribute("data-initialstate")){
-                    initialState = (elem.dataset.initialState == "true");
+                    console.log("hey")
+                    initialState = (elem.dataset.initialstate == "true");
                 }
                 if(initialState){
                 elem.style.color = window.getComputedStyle(currentInner).color;
@@ -511,7 +512,7 @@ const animationStorm = {
             tempSpan.addEventListener("animationend", ()=>{
                 let initialState = animationStorm.initialState;
                 if(elem.hasAttribute("data-initialstate")){
-                    initialState = (elem.dataset.initialState == "true");
+                    initialState = (elem.dataset.initialstate == "true");
                 }
                 if(initialState){
                     elem.style.color = window.getComputedStyle(currentInner).color;
@@ -592,7 +593,7 @@ if(parseFloat(startSettings) > 0){
             tempSpan.addEventListener("animationend", ()=>{
                 let initialState = animationStorm.initialState;
                 if(elem.hasAttribute("data-initialstate")){
-                    initialState = (elem.dataset.initialState == "true");
+                    initialState = (elem.dataset.initialstate == "true");
                 }
                 if(initialState){
                     elem.style.color = window.getComputedStyle(currentInner).color;
@@ -624,7 +625,7 @@ if(parseFloat(startSettings) > 0){
             tempSpan.addEventListener("animationend", ()=>{
                 let initialState = animationStorm.initialState;
                 if(elem.hasAttribute("data-initialstate")){
-                    initialState = (elem.dataset.initialState == "true");
+                    initialState = (elem.dataset.initialstate == "true");
                 }
                 if(initialState){
                 elem.style.color = window.getComputedStyle(currentInner).color;
@@ -733,7 +734,7 @@ if(parseFloat(startSettings) > 0){
             tempSpan.addEventListener("animationend", ()=>{
                 let initialState = animationStorm.initialState;
                 if(elem.hasAttribute("data-initialstate")){
-                    initialState = (elem.dataset.initialState == "true");
+                    initialState = (elem.dataset.initialstate == "true");
                 }
                 if(initialState){
                 elem.style.color = window.getComputedStyle(currentInner).color;
@@ -763,7 +764,7 @@ if(parseFloat(startSettings) > 0){
             tempSpan.addEventListener("animationend", ()=>{
                 let initialState = animationStorm.initialState;
                 if(elem.hasAttribute("data-initialstate")){
-                    initialState = (elem.dataset.initialState == "true");
+                    initialState = (elem.dataset.initialstate == "true");
                 }
                 if(initialState){
                 elem.style.color = window.getComputedStyle(currentInner).color;
