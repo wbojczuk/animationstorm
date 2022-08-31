@@ -5,7 +5,7 @@
 
 
 const animationStorm = {
-
+    initialState: false,
     // OPTIONS
     // SIMPLE WRITE SPEED (MS)
      simpleWriteSpeed: 40,
@@ -121,6 +121,7 @@ const animationStorm = {
 
         // SLIDE WRITE
 
+
         if(document.querySelector(".as-slidewrite")){
             const writeElems = document.querySelectorAll(".as-slidewrite");
             const writeElemsLength = writeElems.length;
@@ -234,10 +235,17 @@ const animationStorm = {
                     if(currentIdle){
                         setTimeout(()=>{
                             currentPlaceholder.addEventListener("animationiteration", ()=>{currentPlaceholder.remove();})
+                            let initialState = animationStorm.initialState;
+                            if(currentElem.hasAttribute("data-initialstate")){
+                                initialState = (currentElem.dataset.initialState == "true");
+                            }
+                            if(initialState){
                                 currentElem.style.color = window.getComputedStyle(currentElemInner).color;
                                 currentInner.remove();
                                 currentElem.classList.remove("as-write");
                                 animationStorm.removeData(currentElem);
+                            }   
+                           
                             }, currentIdle);
                     }
                 }
@@ -429,10 +437,18 @@ const animationStorm = {
         textCount++;
         if(textCount<tempText.length){setTimeout(fallWriteLoop, Math.random() * (speedSettings - (speedSettings - 10)) + (speedSettings - 10))}else{
             tempSpan.addEventListener("animationend", ()=>{
+
+                let initialState = animationStorm.initialState;
+                if(elem.hasAttribute("data-initialstate")){
+                    initialState = (elem.dataset.initialState == "true");
+                }
+                if(initialState){
                 elem.style.color = window.getComputedStyle(currentInner).color;
                 currentInner.remove();
                 elem.classList.remove("as-fallwrite");
                 animationStorm.removeData(elem);
+                }   
+                
             }); 
         }
     }
@@ -493,10 +509,17 @@ const animationStorm = {
             setTimeout(rotateWriteLoop, speedSettings);
         }else{
             tempSpan.addEventListener("animationend", ()=>{
-                elem.style.color = window.getComputedStyle(currentInner).color;
-                currentInner.remove();
-                elem.classList.remove("as-rotatewrite");
-                animationStorm.removeData(elem);
+                let initialState = animationStorm.initialState;
+                if(elem.hasAttribute("data-initialstate")){
+                    initialState = (elem.dataset.initialState == "true");
+                }
+                if(initialState){
+                    elem.style.color = window.getComputedStyle(currentInner).color;
+                    currentInner.remove();
+                    elem.classList.remove("as-rotatewrite");
+                    animationStorm.removeData(elem);
+                }
+                
             }); 
         }
     }
@@ -567,10 +590,17 @@ if(parseFloat(startSettings) > 0){
             setTimeout(slideWriteLoopNeg, speedSettings);
         }else{
             tempSpan.addEventListener("animationend", ()=>{
-                elem.style.color = window.getComputedStyle(currentInner).color;
+                let initialState = animationStorm.initialState;
+                if(elem.hasAttribute("data-initialstate")){
+                    initialState = (elem.dataset.initialState == "true");
+                }
+                if(initialState){
+                    elem.style.color = window.getComputedStyle(currentInner).color;
                 currentInner.remove();
                 elem.classList.remove("as-slidewrite");
                 animationStorm.removeData(elem);
+                }
+                
             }); 
         }
     }
@@ -592,10 +622,16 @@ if(parseFloat(startSettings) > 0){
             setTimeout(slideWriteLoopPos, speedSettings);
         }else{
             tempSpan.addEventListener("animationend", ()=>{
+                let initialState = animationStorm.initialState;
+                if(elem.hasAttribute("data-initialstate")){
+                    initialState = (elem.dataset.initialState == "true");
+                }
+                if(initialState){
                 elem.style.color = window.getComputedStyle(currentInner).color;
                 currentInner.remove();
                 elem.classList.remove("as-slidewrite");
                 animationStorm.removeData(elem);
+                }
             }); 
         }
     }
@@ -695,10 +731,16 @@ if(parseFloat(startSettings) > 0){
             setTimeout(waveWriteLoopRight, speedSettings);
         }else{
             tempSpan.addEventListener("animationend", ()=>{
+                let initialState = animationStorm.initialState;
+                if(elem.hasAttribute("data-initialstate")){
+                    initialState = (elem.dataset.initialState == "true");
+                }
+                if(initialState){
                 elem.style.color = window.getComputedStyle(currentInner).color;
                 currentInner.remove();
                 elem.classList.remove("as-wavewrite");
                 animationStorm.removeData(elem);
+                }
             }); 
         }
     }
@@ -719,10 +761,16 @@ if(parseFloat(startSettings) > 0){
             setTimeout(waveWriteLoopLeft, speedSettings);
         }else{
             tempSpan.addEventListener("animationend", ()=>{
+                let initialState = animationStorm.initialState;
+                if(elem.hasAttribute("data-initialstate")){
+                    initialState = (elem.dataset.initialState == "true");
+                }
+                if(initialState){
                 elem.style.color = window.getComputedStyle(currentInner).color;
                 currentInner.remove();
                 elem.classList.remove("as-wavewrite");
                 animationStorm.removeData(elem);
+                }
             }); 
         }
     }
