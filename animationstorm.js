@@ -49,7 +49,7 @@ const animationStorm = {
     // TEXT WAVE SETTINGS
     waveWriteSpeed: 50,
     waveWriteAnimSpeed: 600,
-    waveWriteHeight: "4vh",
+    waveWriteHeight: "-4vh",
     waveWriteOpacity: true,
     waveWriteDirection: "right",
 
