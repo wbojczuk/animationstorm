@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Animation FrameWorks</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="particlestorm.js" defer></script>
+    <link rel="stylesheet" href="animationstorm.css">
+    <script src="animationstorm.js" defer></script>
+    <script src="confettistorm.js" defer></script>
+</head>
+<body>
+    
+    <div id="siteLogo" class="site-logo"></div> 
+
+    <div class="center">
+        <div id="siteTitle" data-wait="3000" class="as-fallwrite site-title">Animation Storm</div>
+    </div>
+    <div class="right">
+        <div class="versions" id="siteVersions">
+            <div class="center">
+                <div class="versions-title as-write" data-color="rgb(27, 136, 0)" data-height="80%" data-offsetv="10%" data-writespeed="50"  data-wait="5600">&gt;Versions.exe</div>
+            </div>
+            <div class="center"><div class="seperator"></div></div>
+            <div class="center"><div class="versions-console">
+                <div data-wait="7000" data-color="rgb(27, 136, 0)" class="as-mulwrite" style="font-family: 'Source Code Pro', monospace; color: rgb(27, 136, 0); font-size: 1.3vw; top: -2vw;" data-width="1px">
+                    <span class="as-mulwrite-text">ConfettiStorm.js</span>
+                    <span class="as-mulwrite-text">ParticleStorm.js</span>
+                    <span class="as-mulwrite-text">TextStorm.js</span>
+                    <span class="as-mulwrite-text">FlurryStorm.js</span>
+                </div>
+            </div></div>
+        </div>
+    </div>
+    <div class="wrapper-desc">
+    <div class="site-desc" id="siteDesc"></div>
+    <div class="menu" id="menu">
+        <div class="arrow-button" id="arrowUp">&and;</div>
+        <div class="arrow-button" id="arrowDown">&or;</div>
+    </div>
+</div>
+
+<div class="button-wrapper" id="buttonWrapper">
+    <a href="https://github.com/wbojczuk" target="_blank" class="nice-button">GitHub</a>
+    <a href="https://williambojczuk.dev" target="_blank" class="nice-button">Portfolio</a>
+    <a href="https://https://williambojczuk.blogspot.com/" target="_blank" class="nice-button">Blog</a>
+</div>
+    
+    
+
+
+<!-- JS -->
+    <script>
+        const descArray = [
+            "<span class='desc-title'>About: </span>Animation Storm is a line of CSS/JS animation frameworks made for developers. Users do not need extensive knowledge of JavaScript to use the frameworks due to the simplicity of installation and settings. Animations only require you to link the .js file to your HTML. CSS styles are injected by the JavaScript.",
+
+            "<span class='desc-title'>Download: </span>All the project's source code, downloads, and documentation can be found on my GitHub. Feature requests and feedback is always welcome and appreciated.",
+
+            "<span class='desc-title'>This Site: </span>ConfettiStorm was used to create the red particles under the storm icon. The text animations all use animations included in the TextStorm framework, and the white floating specks were generated with ParticleStorm.",
+
+            "<span class='desc-title'>Planned Additions: </span><br>&bull; The element version is planned as soon as TextStorm is finished.<br> &bull; TextStorm uses the AnimationStorm object which will be changed before full release.<br>",
+        ];
+
+
+        let descArrayCounter = 0;
+        const siteDesc = document.getElementById("siteDesc");
+        siteDesc.innerHTML = descArray[descArrayCounter];
+        setTimeout(()=>{
+            document.getElementById("siteLogo").style.opacity = "1";
+        },300);
+        setTimeout(()=>{
+            document.getElementById("siteLogo").style.transform = "translateX(0) translateY(0) scale(1)";
+        },800);
+
+        setInterval(()=>{
+            confettiAnim.confettiAnim(document.getElementById("siteLogo"));
+        }, 3000);
+
+        setTimeout(()=>{
+            document.getElementById("siteVersions").style.width = "20vw";
+            document.getElementById("siteVersions").style.opacity = "1";
+        },5000);
+
+        setTimeout(()=>{
+            siteDesc.style.transform = "translateY(0)";
+            siteDesc.style.opacity = "1";
+            
+            document.getElementById("menu").style.transform = "translateY(0)";
+            document.getElementById("menu").style.opacity = "1";
+        },9000);
+
+        setTimeout(()=>{
+            
+            document.getElementById("buttonWrapper").style.transform = "translateY(0)";
+            document.getElementById("buttonWrapper").style.opacity = "1";
+        },11000);
+
+        document.getElementById("arrowDown").addEventListener("click", ()=>{
+            siteDesc.style.transition = "transform 1s ease, opacity 1s ease";
+            siteDesc.style.transform = "translateY(3vw)";
+            siteDesc.style.opacity = "0";
+
+            if(descArrayCounter > 0){
+                descArrayCounter--;
+            }else{
+                descArrayCounter = descArray.length - 1;
+            }
+
+            setTimeout(()=>{
+                siteDesc.innerHTML = descArray[descArrayCounter];
+                siteDesc.style.transform = "translateY(0)";
+            siteDesc.style.opacity = "1";
+            },1000)
+        });
+
+        document.getElementById("arrowUp").addEventListener("click", ()=>{
+            siteDesc.style.transition = "transform 1s ease, opacity 1s ease";
+            siteDesc.style.transform = "translateY(-3vw)";
+            siteDesc.style.opacity = "0";
+
+            if(descArrayCounter < descArray.length - 1){
+                descArrayCounter++;
+            }else{
+                descArrayCounter = 0;
+            }
+
+            setTimeout(()=>{
+                siteDesc.innerHTML = descArray[descArrayCounter];
+                siteDesc.style.transform = "translateY(0)";
+            siteDesc.style.opacity = "1";
+            },1000)
+        });
+        
+    </script>
+</body>
+</html>
