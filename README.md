@@ -7,3 +7,9 @@ It is an animation framework built from vanilla JavaScript and CSS. Animations a
 DEMO- https://wbojczuk.github.io/animationstorm/
 
 DEVLOG/BLOG- https://williambojczuk.blogspot.com/search/label/animationstorm <br>
+
+<h2>Versions</h2>
+TextStorm: https://github.com/wbojczuk/textstorm <br>
+ConfettiStorm: https://github.com/wbojczuk/confetti <br>
+ParticleStorm: https://github.com/wbojczuk/particlestorm <br>
+FlurryStorm: https://github.com/wbojczuk/flurrystorm
